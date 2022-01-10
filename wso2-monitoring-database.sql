@@ -115,3 +115,19 @@ CREATE TABLE `traffic_types`
     KEY `index_traffic_types_date_created` (`date_created`),
     KEY `index_traffic_types_date_modified` (`date_modified`)
 );
+
+CREATE TABLE `logs`
+(
+    `log_id`            bigint unsigned NOT NULL AUTO_INCREMENT,
+    `log_type`          varchar(30) NOT NULL,
+    `traffic_type`      varchar(30) NOT NULL,
+    `log_date`          varchar(30) NOT NULL,
+    `log_description`   varchar(500) NOT NULL,
+    `date_created`      timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `date_modified`     timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (`log_id`),
+
+    KEY `index_logs_date_created` (`date_created`),
+    KEY `index_logs_date_modified` (`date_modified`)
+);
