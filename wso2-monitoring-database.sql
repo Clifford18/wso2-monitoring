@@ -2,12 +2,6 @@ DROP DATABASE IF EXISTS `wso2-monitoring-database`;
 CREATE DATABASE `wso2-monitoring-database`;
 
 USE `wso2-monitoring-database`;
--- gender *
--- designation *
--- user_account *
--- traffic_type *
--- log_types *
--- logs
 
 CREATE TABLE `genders`
 (
@@ -58,8 +52,6 @@ CREATE TABLE `user_accounts`
   `restricted_access_sources_match_type` enum('STRING','REGEX') NOT NULL,
   `max_restricted_access_sources` int NOT NULL DEFAULT '5',
   `restricted_access_sources` varchar(200) DEFAULT NULL,
-  `date_created` datetime NOT NULL,
-  `date_modified` datetime NOT NULL,
   `tracking_id` varchar(64) DEFAULT NULL,
   `tracking_source_ip` varchar(100) DEFAULT NULL,
   `tracking_url` varchar(200) DEFAULT NULL,
@@ -67,7 +59,8 @@ CREATE TABLE `user_accounts`
   `tracking_referrer` varchar(200) DEFAULT NULL,
   `gender`        varchar(30) NOT NULL,
   `designation`        varchar(30) NOT NULL,
-
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
   PRIMARY KEY (`user_id`),
 
@@ -75,12 +68,9 @@ CREATE TABLE `user_accounts`
   UNIQUE KEY `uindex_user_accounts_username` (`username`),
 
   KEY `index_user_accounts_user_status` (`user_status`),
-  KEY `index_user_accounts_account_member_id` (`member_id`),
-  KEY `index_user_accounts_user_names` (`full_name`),
   KEY `index_user_accounts_mobile_number` (`mobile_number`),
   KEY `index_user_accounts_user_pwd_status` (`user_pwd_status`),
   KEY `index_user_accounts_user_pwd_status_date` (`user_pwd_status_date`),
-  KEY `index_user_accounts_reset_pwd_request_count` (`reset_pwd_request_count`),
   KEY `index_user_accounts_allowed_access_sources_status` (`allowed_access_sources_status`),
   KEY `index_user_accounts_allowed_access_sources_match_type` (`allowed_access_sources_match_type`),
   KEY `index_user_accounts_restricted_access_sources_status` (`restricted_access_sources_status`),
@@ -92,42 +82,49 @@ CREATE TABLE `user_accounts`
   CONSTRAINT `fk_designations_user_accounts_designation` FOREIGN KEY (`designation`) REFERENCES `designations` (`designation`) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-CREATE TABLE `log_types`
+CREATE TABLE `request_statuses`
 (
-    `log_type`        varchar(30) NOT NULL,
+    `request_status_code`        varchar(50) NOT NULL,
+    `request_status_code_description`        varchar(200) NOT NULL,
     `date_created`  timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `date_modified` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    PRIMARY KEY (`log_type`),
+    PRIMARY KEY (`request_status_code`),
 
-    KEY `index_log_types_date_created` (`date_created`),
-    KEY `index_log_types_date_modified` (`date_modified`)
+    KEY `index_request_statuses_request_status_code` (`request_status_code`),
+    KEY `index_request_statuses_date_created` (`date_created`),
+    KEY `index_request_statuses_date_modified` (`date_modified`)
 );
 
-CREATE TABLE `traffic_types`
-(
-    `traffic_type`        varchar(30) NOT NULL,
-    `date_created`  timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `date_modified` timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+CREATE TABLE `request_logs` (
+  `request_id` bigint NOT NULL AUTO_INCREMENT,
+  `request_reference` varchar(150) NOT NULL,
+  `request_status_code` varchar(50) NOT NULL,
+  `request_method` varchar(20) NOT NULL,
+  `request_resource` varchar(500) NOT NULL,
+  `request_parameters` text,
+  `request_headers` varchar(500) NOT NULL,
+  `request_body` longtext,
+  `request_origin_ip` varchar(50) NOT NULL,
+  `response_headers` varchar(500) DEFAULT NULL,
+  `response_body` longtext,
+  `error_code` varchar(50) DEFAULT NULL,
+  `error_message` longtext,
+  `error_stacktrace` longtext,
+  `date_created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `date_modified` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 
-    PRIMARY KEY (`traffic_type`),
+  PRIMARY KEY (`request_id`),
+  UNIQUE KEY `uindex_request_logs_request_reference` (`request_reference`),
 
-    KEY `index_traffic_types_date_created` (`date_created`),
-    KEY `index_traffic_types_date_modified` (`date_modified`)
-);
+  KEY `index_request_logs_error_code` (`error_code`),
+  KEY `index_request_logs_request_id` (`request_id`),
+  KEY `index_request_logs_request_origin_ip` (`request_origin_ip`),
+  KEY `index_request_logs_request_resource` (`request_resource`),
+  KEY `index_request_logs_request_status` (`request_status_code`),
+  KEY `index_request_logs_date_created` (`date_created`),
+  KEY `index_request_logs_date_modified` (`date_modified`),
 
-CREATE TABLE `logs`
-(
-    `log_id`            bigint unsigned NOT NULL AUTO_INCREMENT,
-    `log_type`          varchar(30) NOT NULL,
-    `traffic_type`      varchar(30) NOT NULL,
-    `log_date`          varchar(30) NOT NULL,
-    `log_description`   varchar(500) NOT NULL,
-    `date_created`      timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `date_modified`     timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT `request_logs_request_statuses_request_status_code_fk` FOREIGN KEY (`request_status_code`) REFERENCES `request_statuses` (`request_status_code`) ON UPDATE CASCADE
+)
 
-    PRIMARY KEY (`log_id`),
-
-    KEY `index_logs_date_created` (`date_created`),
-    KEY `index_logs_date_modified` (`date_modified`)
-);
