@@ -83,7 +83,10 @@ public class MAIN {
         }
     }
 
-    public static void insertUser() {
+    public static void insertUser(String user_status_new, String account_access_mode_new, String username_new, String first_name_new, String last_name_new,
+                                  String mobile_number_new, String email_address_new, String user_pwd_status_new, String user_pwd_new, String allowed_access_sources_status_new,
+                                  String allowed_access_sources_match_type_new, String restricted_access_sources_status_new, String restricted_access_sources_match_type_new,
+                                  String gender_new, String designation_new) {
         Connection myConn = null;
 
         PreparedStatement myPreparedStatement = null;
@@ -98,21 +101,21 @@ public class MAIN {
                     "                           restricted_access_sources_match_type, gender, designation)\n" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             myPreparedStatement = myConn.prepareStatement(mySql);
-            myPreparedStatement.setString(1, "ACTIVE");
-            myPreparedStatement.setString(2, "API");
-            myPreparedStatement.setString(3, "username5");
-            myPreparedStatement.setString(4, "first_name5");
-            myPreparedStatement.setString(5, "last_name5");
-            myPreparedStatement.setString(6, "254725111222");
-            myPreparedStatement.setString(7, "f5l5@gmail.com");
-            myPreparedStatement.setString(8, "ACTIVE");
-            myPreparedStatement.setString(9, "user_pwd5");
-            myPreparedStatement.setString(10, "ACTIVE");
-            myPreparedStatement.setString(11, "STRING");
-            myPreparedStatement.setString(12, "ACTIVE");
-            myPreparedStatement.setString(13, "STRING");
-            myPreparedStatement.setString(14, "FeMale");
-            myPreparedStatement.setString(15, "IT_Manager");
+            myPreparedStatement.setString(1, user_status_new);
+            myPreparedStatement.setString(2, account_access_mode_new);
+            myPreparedStatement.setString(3, username_new);
+            myPreparedStatement.setString(4, first_name_new);
+            myPreparedStatement.setString(5, last_name_new);
+            myPreparedStatement.setString(6, mobile_number_new);
+            myPreparedStatement.setString(7, email_address_new);
+            myPreparedStatement.setString(8, user_pwd_status_new);
+            myPreparedStatement.setString(9, user_pwd_new);
+            myPreparedStatement.setString(10, allowed_access_sources_status_new);
+            myPreparedStatement.setString(11, allowed_access_sources_match_type_new);
+            myPreparedStatement.setString(12, restricted_access_sources_status_new);
+            myPreparedStatement.setString(13, restricted_access_sources_match_type_new);
+            myPreparedStatement.setString(14, gender_new);
+            myPreparedStatement.setString(15, designation_new);
 
 
             myPreparedStatement.executeUpdate();
@@ -266,8 +269,11 @@ public class MAIN {
 
     public static void main(String[] args) {
         //readAllLogs();
-        //insertUser();
+        //insertUser();"
+        insertUser("ACTIVE", "API", "username5", "first_name5", "last_name5", "254725111222", "f5l5@gmail.com", "ACTIVE",
+                "user_pwd5", "ACTIVE",
+                "STRING", "ACTIVE", "STRING", "Male", "IT_Manager");
         //updateUser();
-        deleteUser();
+        //deleteUser();
     }
 }
