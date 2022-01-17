@@ -156,7 +156,7 @@ public class MAIN {
         }
     }
 
-    public static void updateUser() {
+    public static void updateUser(int user_id_no, String gender_update, String designation_update ) {
         Connection myConn = null;
 
         PreparedStatement myPreparedStatement = null;
@@ -169,9 +169,9 @@ public class MAIN {
 
             myPreparedStatement = myConn.prepareStatement(mySql);
 
-            myPreparedStatement.setString(1, "Male");
-            myPreparedStatement.setString(2, "C_E_O");
-            myPreparedStatement.setInt(3, 5);
+            myPreparedStatement.setString(1, gender_update);
+            myPreparedStatement.setString(2, designation_update);
+            myPreparedStatement.setInt(3, user_id_no);
 
 
             myPreparedStatement.executeUpdate();
@@ -179,7 +179,7 @@ public class MAIN {
             myPreparedStatement.close();
             myConn.close();
 
-            System.out.println("User Updated");
+            System.out.println("User Updated Successfully");
 
             myConn = null;
             myPreparedStatement = null;
@@ -270,10 +270,11 @@ public class MAIN {
     public static void main(String[] args) {
         //readAllLogs();
         //insertUser();"
-        insertUser("ACTIVE", "API", "username5", "first_name5", "last_name5", "254725111222", "f5l5@gmail.com", "ACTIVE",
-                "user_pwd5", "ACTIVE",
-                "STRING", "ACTIVE", "STRING", "Male", "IT_Manager");
+//        insertUser("ACTIVE", "API", "username5", "first_name5", "last_name5", "254725111222", "f5l5@gmail.com", "ACTIVE",
+//                "user_pwd5", "ACTIVE",
+//                "STRING", "ACTIVE", "STRING", "Male", "IT_Manager");
         //updateUser();
+        updateUser(6,"FeMale","C_E_O");
         //deleteUser();
     }
 }
