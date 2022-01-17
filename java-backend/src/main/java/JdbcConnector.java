@@ -12,14 +12,14 @@ public class JdbcConnector {
 
         try {
 
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/employee_management_system","root","Pa55w0rd");
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2-monitoring-database","root","Pa55w0rd");
 
             myStatement = myConn.createStatement();
 
-            myResult = myStatement.executeQuery("select * from tasks");
+            myResult = myStatement.executeQuery("select * from request_logs");
 
             while (myResult.next()){
-                System.out.println(myResult.getString("task_id"));
+                System.out.println(myResult.getString("request_id"));
             }
             myResult.close();
             myStatement.close();
