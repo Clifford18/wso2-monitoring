@@ -82,25 +82,10 @@ CREATE TABLE `user_accounts`
     CONSTRAINT `fk_designations_user_accounts_designation` FOREIGN KEY (`designation`) REFERENCES `designations` (`designation`) ON DELETE RESTRICT ON UPDATE CASCADE
 );
 
-CREATE TABLE `request_statuses`
-(
-    `request_status_code`             varchar(50) NOT NULL,
-    `request_status_code_description` varchar(200)         DEFAULT NULL,
-    `date_created`                    timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `date_modified`                   timestamp   NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-
-    PRIMARY KEY (`request_status_code`),
-
-    KEY `index_request_statuses_request_status_code` (`request_status_code`),
-    KEY `index_request_statuses_date_created` (`date_created`),
-    KEY `index_request_statuses_date_modified` (`date_modified`)
-);
-
 CREATE TABLE `request_logs`
 (
     `request_id`          bigint       NOT NULL AUTO_INCREMENT,
     `request_reference`   varchar(150) NOT NULL,
-    `request_status_code` varchar(50)  NOT NULL,
     `request_method`      varchar(20)  NOT NULL,
     `request_resource`    varchar(500) NOT NULL,
     `request_parameters`  text,
@@ -122,11 +107,8 @@ CREATE TABLE `request_logs`
     KEY `index_request_logs_request_id` (`request_id`),
     KEY `index_request_logs_request_origin_ip` (`request_origin_ip`),
     KEY `index_request_logs_request_resource` (`request_resource`),
-    KEY `index_request_logs_request_status` (`request_status_code`),
     KEY `index_request_logs_date_created` (`date_created`),
-    KEY `index_request_logs_date_modified` (`date_modified`),
-
-    CONSTRAINT `request_logs_request_statuses_request_status_code_fk` FOREIGN KEY (`request_status_code`) REFERENCES `request_statuses` (`request_status_code`) ON UPDATE CASCADE
+    KEY `index_request_logs_date_modified` (`date_modified`)
 );
 
 
@@ -155,10 +137,6 @@ VALUES ('ACTIVE', 'API', 'username1', 'first_name1', 'last_name1', 254721111222,
 
 
 
-INSERT INTO request_statuses (request_status_code)
-VALUES ('200'),
-       ('404'),
-       ('500');
 
 
 
@@ -172,10 +150,10 @@ BEGIN
         DO
 
 
-            INSERT INTO request_logs (request_reference, request_status_code, request_method, request_resource,
+            INSERT INTO request_logs (request_reference, request_method, request_resource,
                                       request_parameters, request_headers, request_body, request_origin_ip,
                                       response_body)
-            VALUES (concat('request_reference - ', i), '200', 'request_method1', 'request_resource1',
+            VALUES (concat('request_reference - ', i), 'request_method1', 'request_resource1',
                     concat('request_parameters - ', i), concat('request_headers - ', i), concat('request_body - ', i),
                     concat('request_origin_ip - ', i), concat('response_body - ', i));
             SET i = i + 1;
