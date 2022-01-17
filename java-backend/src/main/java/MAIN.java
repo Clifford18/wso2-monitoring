@@ -83,10 +83,7 @@ public class MAIN {
         }
     }
 
-    public static void insertUser(String user_status_new, String account_access_mode_new, String username_new, String first_name_new, String last_name_new,
-                                  String mobile_number_new, String email_address_new, String user_pwd_status_new, String user_pwd_new, String allowed_access_sources_status_new,
-                                  String allowed_access_sources_match_type_new, String restricted_access_sources_status_new, String restricted_access_sources_match_type_new,
-                                  String gender_new, String designation_new) {
+    public static void insertUser(UserAccounts user_accounts) {
         Connection myConn = null;
 
         PreparedStatement myPreparedStatement = null;
@@ -101,21 +98,21 @@ public class MAIN {
                     "                           restricted_access_sources_match_type, gender, designation)\n" +
                     "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             myPreparedStatement = myConn.prepareStatement(mySql);
-            myPreparedStatement.setString(1, user_status_new);
-            myPreparedStatement.setString(2, account_access_mode_new);
-            myPreparedStatement.setString(3, username_new);
-            myPreparedStatement.setString(4, first_name_new);
-            myPreparedStatement.setString(5, last_name_new);
-            myPreparedStatement.setString(6, mobile_number_new);
-            myPreparedStatement.setString(7, email_address_new);
-            myPreparedStatement.setString(8, user_pwd_status_new);
-            myPreparedStatement.setString(9, user_pwd_new);
-            myPreparedStatement.setString(10, allowed_access_sources_status_new);
-            myPreparedStatement.setString(11, allowed_access_sources_match_type_new);
-            myPreparedStatement.setString(12, restricted_access_sources_status_new);
-            myPreparedStatement.setString(13, restricted_access_sources_match_type_new);
-            myPreparedStatement.setString(14, gender_new);
-            myPreparedStatement.setString(15, designation_new);
+            myPreparedStatement.setString(1, user_accounts.getUser_status());
+            myPreparedStatement.setString(2, user_accounts.getAccount_access_mode());
+            myPreparedStatement.setString(3, user_accounts.getUsername());
+            myPreparedStatement.setString(4, user_accounts.getFirst_name());
+            myPreparedStatement.setString(5, user_accounts.getLast_name());
+            myPreparedStatement.setInt(6, user_accounts.getMobile_number());
+            myPreparedStatement.setString(7, user_accounts.getEmail_address());
+            myPreparedStatement.setString(8, user_accounts.getUser_pwd_status());
+            myPreparedStatement.setString(9, user_accounts.getUser_pwd());
+            myPreparedStatement.setString(10, user_accounts.getAllowed_access_sources_status());
+            myPreparedStatement.setString(11, user_accounts.getAllowed_access_sources_match_type());
+            myPreparedStatement.setString(12, user_accounts.getRestricted_access_sources_status());
+            myPreparedStatement.setString(13, user_accounts.getRestricted_access_sources_match_type());
+            myPreparedStatement.setString(14, user_accounts.getGender());
+            myPreparedStatement.setString(15, user_accounts.getDesignation());
 
 
             myPreparedStatement.executeUpdate();
