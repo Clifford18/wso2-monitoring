@@ -267,32 +267,37 @@ public class MAIN {
     public static void main(String[] args) {
         //readAllLogs();
         //insertUser();"
-        UserAccounts user = new UserAccounts();
-
-        user.setUser_status("ACTIVE");
-        user.setAccount_access_mode("API");
-        user.setUsername("username5");
-        user.setFirst_name("first_name5");
-        user.setLast_name("last_name5");
-        user.setMobile_number(254725111);
-        user.setEmail_address("f5l5@gmail.com");
-        user.setUser_pwd_status("ACTIVE");
-        user.setUser_pwd("user_pwd5");
-        user.setAllowed_access_sources_status("ACTIVE");
-        user.setAllowed_access_sources_match_type("STRING");
-        user.setRestricted_access_sources_status("ACTIVE");
-        user.setRestricted_access_sources_match_type("STRING");
-        user.setGender("Male");
-        user.setDesignation("IT_Manager");
-
-        insertUser(user);
-
+//        UserAccounts new_user = new UserAccounts();
+//
+//        new_user.setUser_status("ACTIVE");
+//        new_user.setAccount_access_mode("API");
+//        new_user.setUsername("username5");
+//        new_user.setFirst_name("first_name5");
+//        new_user.setLast_name("last_name5");
+//        new_user.setMobile_number(254725111);
+//        new_user.setEmail_address("f5l5@gmail.com");
+//        new_user.setUser_pwd_status("ACTIVE");
+//        new_user.setUser_pwd("user_pwd5");
+//        new_user.setAllowed_access_sources_status("ACTIVE");
+//        new_user.setAllowed_access_sources_match_type("STRING");
+//        new_user.setRestricted_access_sources_status("ACTIVE");
+//        new_user.setRestricted_access_sources_match_type("STRING");
+//        new_user.setGender("Male");
+//        new_user.setDesignation("IT_Manager");
+//
+//        insertUser(user);
 
 //        insertUser("ACTIVE", "API", "username5", "first_name5", "last_name5", "254725111222", "f5l5@gmail.com", "ACTIVE",
 //                "user_pwd5", "ACTIVE",
 //                "STRING", "ACTIVE", "STRING", "Male", "IT_Manager");
+
         //updateUser();
 //        updateUser(6,"FeMale","C_E_O");
+        UserAccounts update_user =new UserAccounts();
+        update_user.setUser_id(7);
+        update_user.setGender("FeMale");
+        update_user.setDesignation("C_E_O");
+        updateUser(update_user);
 
         //deleteUser();
         //deleteUser(6);
