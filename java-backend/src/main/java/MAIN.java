@@ -153,7 +153,7 @@ public class MAIN {
         }
     }
 
-    public static void updateUser(int user_id_no, String gender_update, String designation_update ) {
+    public static void updateUser(UserAccounts user_accounts ) {
         Connection myConn = null;
 
         PreparedStatement myPreparedStatement = null;
@@ -166,9 +166,9 @@ public class MAIN {
 
             myPreparedStatement = myConn.prepareStatement(mySql);
 
-            myPreparedStatement.setString(1, gender_update);
-            myPreparedStatement.setString(2, designation_update);
-            myPreparedStatement.setInt(3, user_id_no);
+            myPreparedStatement.setString(1, user_accounts.getGender());
+            myPreparedStatement.setString(2, user_accounts.getDesignation());
+            myPreparedStatement.setInt(3, user_accounts.getUser_id());
 
 
             myPreparedStatement.executeUpdate();
@@ -267,6 +267,27 @@ public class MAIN {
     public static void main(String[] args) {
         //readAllLogs();
         //insertUser();"
+        UserAccounts user = new UserAccounts();
+
+        user.setUser_status("ACTIVE");
+        user.setAccount_access_mode("API");
+        user.setUsername("username5");
+        user.setFirst_name("first_name5");
+        user.setLast_name("last_name5");
+        user.setMobile_number(254725111);
+        user.setEmail_address("f5l5@gmail.com");
+        user.setUser_pwd_status("ACTIVE");
+        user.setUser_pwd("user_pwd5");
+        user.setAllowed_access_sources_status("ACTIVE");
+        user.setAllowed_access_sources_match_type("STRING");
+        user.setRestricted_access_sources_status("ACTIVE");
+        user.setRestricted_access_sources_match_type("STRING");
+        user.setGender("Male");
+        user.setDesignation("IT_Manager");
+
+        insertUser(user);
+
+
 //        insertUser("ACTIVE", "API", "username5", "first_name5", "last_name5", "254725111222", "f5l5@gmail.com", "ACTIVE",
 //                "user_pwd5", "ACTIVE",
 //                "STRING", "ACTIVE", "STRING", "Male", "IT_Manager");
@@ -274,6 +295,6 @@ public class MAIN {
 //        updateUser(6,"FeMale","C_E_O");
 
         //deleteUser();
-        deleteUser(6);
+        //deleteUser(6);
     }
 }
