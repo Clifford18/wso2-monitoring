@@ -209,7 +209,7 @@ public class MAIN {
         }
     }
 
-    public static void deleteUser(int user_id_deleted) {
+    public static void deleteUser(UserAccounts user_accounts) {
         Connection myConn = null;
 
         PreparedStatement myPreparedStatement = null;
@@ -222,7 +222,7 @@ public class MAIN {
 
             myPreparedStatement = myConn.prepareStatement(mySql);
 
-            myPreparedStatement.setInt(1, user_id_deleted); //value of id is 5
+            myPreparedStatement.setInt(1, user_accounts.getUser_id()); //value of id is 5
 
 
             myPreparedStatement.executeUpdate();
@@ -293,13 +293,18 @@ public class MAIN {
 
         //updateUser();
 //        updateUser(6,"FeMale","C_E_O");
-        UserAccounts update_user =new UserAccounts();
-        update_user.setUser_id(7);
-        update_user.setGender("FeMale");
-        update_user.setDesignation("C_E_O");
-        updateUser(update_user);
+//
+//        UserAccounts update_user =new UserAccounts();
+//        update_user.setUser_id(7);
+//        update_user.setGender("FeMale");
+//        update_user.setDesignation("C_E_O");
+//        updateUser(update_user);
 
         //deleteUser();
+        UserAccounts delete_user = new UserAccounts();
+        delete_user.setUser_id(7);
+        deleteUser(delete_user);
+
         //deleteUser(6);
     }
 }
