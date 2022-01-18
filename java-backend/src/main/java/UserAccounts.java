@@ -1,4 +1,4 @@
-public class user_accounts {
+public class UserAccounts {
 
 
     private int user_id;
