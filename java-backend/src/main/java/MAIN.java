@@ -1,4 +1,6 @@
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MAIN {
     public static void readAllLogs() {
@@ -16,7 +18,12 @@ public class MAIN {
 
             myResult = myStatement.executeQuery("select * from request_logs");
 
+            List<RequestLog> requestLogs = new ArrayList<>();
+
             while (myResult.next()) {
+
+                RequestLog requestLog = new RequestLog();
+
                 int request_id = myResult.getInt("request_id");
                 String request_reference = myResult.getString("request_reference");
                 String request_method = myResult.getString("request_method");
@@ -33,10 +40,31 @@ public class MAIN {
                 String date_created = myResult.getString("date_created");
                 String date_modified = myResult.getString("date_modified");
 
+                requestLog.setRequest_id(request_id);
+                requestLog.setRequest_reference(request_reference);
+                requestLog.setRequest_method(request_method);
+                requestLog.setRequest_resource(request_resource);
+                requestLog.setRequest_parameters(request_parameters);
+                requestLog.setRequest_headers(request_headers);
+                requestLog.setRequest_body(request_body);
+                requestLog.setRequest_origin_ip(request_origin_ip);
+                requestLog.setResponse_headers(response_headers);
+                requestLog.setResponse_body(response_body);
+                requestLog.setError_code(error_code);
+                requestLog.setError_message(error_message);
+                requestLog.setError_stacktrace(error_stacktrace);
+                requestLog.setDate_created(date_created);
+                requestLog.setDate_modified(date_modified);
+
+                requestLogs.add(requestLog);
+
                 //print results
                 System.out.println("ID ::" + request_id);
                 //System.out.println(myResult.getString("request_id"));
             }
+
+
+
             myResult.close();
             myStatement.close();
             myConn.close();
@@ -86,7 +114,7 @@ public class MAIN {
     public static void insertUser(UserAccounts user_accounts) {
         Connection myConn = null;
 
-        PreparedStatement myPreparedStatement = null;
+        NamedPreparedStatement myPreparedStatement = null;
 
         try {
 
@@ -96,9 +124,9 @@ public class MAIN {
                     "                           email_address, user_pwd_status, user_pwd, allowed_access_sources_status,\n" +
                     "                           allowed_access_sources_match_type, restricted_access_sources_status,\n" +
                     "                           restricted_access_sources_match_type, gender, designation)\n" +
-                    "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            myPreparedStatement = myConn.prepareStatement(mySql);
-            myPreparedStatement.setString(1, user_accounts.getUser_status());
+                    "VALUES (\":user_status\", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            myPreparedStatement = NamedPreparedStatement.prepareStatement(myConn, mySql);
+            myPreparedStatement.setString(":user_status", user_accounts.getUser_status());
             myPreparedStatement.setString(2, user_accounts.getAccount_access_mode());
             myPreparedStatement.setString(3, user_accounts.getUsername());
             myPreparedStatement.setString(4, user_accounts.getFirst_name());
@@ -265,7 +293,7 @@ public class MAIN {
 
 
     public static void main(String[] args) {
-        //readAllLogs();
+        readAllLogs();
         //insertUser();"
 //        UserAccounts new_user = new UserAccounts();
 //
@@ -301,9 +329,9 @@ public class MAIN {
 //        updateUser(update_user);
 
         //deleteUser();
-        UserAccounts delete_user = new UserAccounts();
-        delete_user.setUser_id(7);
-        deleteUser(delete_user);
+//        UserAccounts delete_user = new UserAccounts();
+//        delete_user.setUser_id(7);
+//        deleteUser(delete_user);
 
         //deleteUser(6);
     }
