@@ -1,6 +1,5 @@
 public class UserAccounts {
 
-
     private int user_id;
     private String user_status;
     private String user_status_description;
@@ -33,6 +32,45 @@ public class UserAccounts {
     private String designation;
     private String date_created;
     private String date_modified;
+
+    public UserAccounts(int user_id, String user_status, String user_status_description, String user_status_date, String account_access_mode, String username, String first_name, String last_name, int mobile_number, String email_address, String user_pwd_status, String user_pwd, String user_pwd_status_date, int login_attempts, int max_login_attempts, String allowed_access_sources_status, String allowed_access_sources_match_type, int max_allowed_access_sources, String allowed_access_sources, String restricted_access_sources_status, String restricted_access_sources_match_type, int max_restricted_access_sources, String restricted_access_sources, String tracking_id, String tracking_source_ip, String tracking_url, String tracking_time, String tracking_referrer, String gender, String designation, String date_created, String date_modified) {
+        this.user_id = user_id;
+        this.user_status = user_status;
+        this.user_status_description = user_status_description;
+        this.user_status_date = user_status_date;
+        this.account_access_mode = account_access_mode;
+        this.username = username;
+        this.first_name = first_name;
+        this.last_name = last_name;
+        this.mobile_number = mobile_number;
+        this.email_address = email_address;
+        this.user_pwd_status = user_pwd_status;
+        this.user_pwd = user_pwd;
+        this.user_pwd_status_date = user_pwd_status_date;
+        this.login_attempts = login_attempts;
+        this.max_login_attempts = max_login_attempts;
+        this.allowed_access_sources_status = allowed_access_sources_status;
+        this.allowed_access_sources_match_type = allowed_access_sources_match_type;
+        this.max_allowed_access_sources = max_allowed_access_sources;
+        this.allowed_access_sources = allowed_access_sources;
+        this.restricted_access_sources_status = restricted_access_sources_status;
+        this.restricted_access_sources_match_type = restricted_access_sources_match_type;
+        this.max_restricted_access_sources = max_restricted_access_sources;
+        this.restricted_access_sources = restricted_access_sources;
+        this.tracking_id = tracking_id;
+        this.tracking_source_ip = tracking_source_ip;
+        this.tracking_url = tracking_url;
+        this.tracking_time = tracking_time;
+        this.tracking_referrer = tracking_referrer;
+        this.gender = gender;
+        this.designation = designation;
+        this.date_created = date_created;
+        this.date_modified = date_modified;
+    }
+    public UserAccounts(){
+
+    }
+
 
     public int getUser_id() {
         return user_id;
