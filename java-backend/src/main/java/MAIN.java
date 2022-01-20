@@ -126,7 +126,9 @@ public class MAIN {
                     "VALUES (:user_status, :account_access_mode, :username, :first_name, :last_name, :mobile_number, " +
                     ":email_address, :user_pwd_status, :user_pwd, :allowed_access_sources_status, :allowed_access_sources_match_type," +
                     " :restricted_access_sources_status, :restricted_access_sources_match_type, :gender, :designation)";
+
             myPreparedStatement = NamedPreparedStatement.prepareStatement(myConn, mySql);
+
             myPreparedStatement.setString("user_status", user_accounts.getUser_status());
             myPreparedStatement.setString("account_access_mode", user_accounts.getAccount_access_mode());
             myPreparedStatement.setString("username", user_accounts.getUsername());
@@ -185,19 +187,19 @@ public class MAIN {
     public static void updateUser(UserAccounts user_accounts) {
         Connection myConn = null;
 
-        PreparedStatement myPreparedStatement = null;
+        NamedPreparedStatement myPreparedStatement = null;
 
         try {
 
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2-monitoring-database", "root", "Pa55w0rd");
 
-            String mySql = "UPDATE user_accounts SET gender=?, designation=? WHERE user_id=?";
+            String mySql = "UPDATE user_accounts SET gender=:gender, designation=:designation WHERE user_id=:user_id";
 
-            myPreparedStatement = myConn.prepareStatement(mySql);
+            myPreparedStatement = NamedPreparedStatement.prepareStatement(myConn,mySql);
 
-            myPreparedStatement.setString(1, user_accounts.getGender());
-            myPreparedStatement.setString(2, user_accounts.getDesignation());
-            myPreparedStatement.setInt(3, user_accounts.getUser_id());
+            myPreparedStatement.setString("gender", user_accounts.getGender());
+            myPreparedStatement.setString("designation", user_accounts.getDesignation());
+            myPreparedStatement.setInt("user_id", user_accounts.getUser_id());
 
 
             myPreparedStatement.executeUpdate();
@@ -241,7 +243,7 @@ public class MAIN {
     public static void deleteUser(UserAccounts user_accounts) {
         Connection myConn = null;
 
-        PreparedStatement myPreparedStatement = null;
+         PreparedStatement myPreparedStatement = null;
 
         try {
 
@@ -321,13 +323,13 @@ public class MAIN {
 //                "STRING", "ACTIVE", "STRING", "Male", "IT_Manager");
 
         //updateUser();
-//        updateUser(6,"FeMale","C_E_O");
-//
-//        UserAccounts update_user =new UserAccounts();
-//        update_user.setUser_id(7);
-//        update_user.setGender("FeMale");
-//        update_user.setDesignation("C_E_O");
-//        updateUser(update_user);
+        //updateUser(6,"FeMale","C_E_O");
+
+        UserAccounts update_user =new UserAccounts();
+        update_user.setUser_id(8);
+        update_user.setGender("FeMale");
+        update_user.setDesignation("C_E_O");
+        updateUser(update_user);
 
         //deleteUser();
 //        UserAccounts delete_user = new UserAccounts();
