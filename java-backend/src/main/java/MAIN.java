@@ -64,7 +64,6 @@ public class MAIN {
             }
 
 
-
             myResult.close();
             myStatement.close();
             myConn.close();
@@ -124,23 +123,25 @@ public class MAIN {
                     "                           email_address, user_pwd_status, user_pwd, allowed_access_sources_status,\n" +
                     "                           allowed_access_sources_match_type, restricted_access_sources_status,\n" +
                     "                           restricted_access_sources_match_type, gender, designation)\n" +
-                    "VALUES (\":user_status\", ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "VALUES (:user_status, :account_access_mode, :username, :first_name, :last_name, :mobile_number, " +
+                    ":email_address, :user_pwd_status, :user_pwd, :allowed_access_sources_status, :allowed_access_sources_match_type," +
+                    " :restricted_access_sources_status, :restricted_access_sources_match_type, :gender, :designation)";
             myPreparedStatement = NamedPreparedStatement.prepareStatement(myConn, mySql);
-            myPreparedStatement.setString(":user_status", user_accounts.getUser_status());
-            myPreparedStatement.setString(2, user_accounts.getAccount_access_mode());
-            myPreparedStatement.setString(3, user_accounts.getUsername());
-            myPreparedStatement.setString(4, user_accounts.getFirst_name());
-            myPreparedStatement.setString(5, user_accounts.getLast_name());
-            myPreparedStatement.setInt(6, user_accounts.getMobile_number());
-            myPreparedStatement.setString(7, user_accounts.getEmail_address());
-            myPreparedStatement.setString(8, user_accounts.getUser_pwd_status());
-            myPreparedStatement.setString(9, user_accounts.getUser_pwd());
-            myPreparedStatement.setString(10, user_accounts.getAllowed_access_sources_status());
-            myPreparedStatement.setString(11, user_accounts.getAllowed_access_sources_match_type());
-            myPreparedStatement.setString(12, user_accounts.getRestricted_access_sources_status());
-            myPreparedStatement.setString(13, user_accounts.getRestricted_access_sources_match_type());
-            myPreparedStatement.setString(14, user_accounts.getGender());
-            myPreparedStatement.setString(15, user_accounts.getDesignation());
+            myPreparedStatement.setString("user_status", user_accounts.getUser_status());
+            myPreparedStatement.setString("account_access_mode", user_accounts.getAccount_access_mode());
+            myPreparedStatement.setString("username", user_accounts.getUsername());
+            myPreparedStatement.setString("first_name", user_accounts.getFirst_name());
+            myPreparedStatement.setString("last_name", user_accounts.getLast_name());
+            myPreparedStatement.setInt("mobile_number", user_accounts.getMobile_number());
+            myPreparedStatement.setString("email_address", user_accounts.getEmail_address());
+            myPreparedStatement.setString("user_pwd_status", user_accounts.getUser_pwd_status());
+            myPreparedStatement.setString("user_pwd", user_accounts.getUser_pwd());
+            myPreparedStatement.setString("allowed_access_sources_status", user_accounts.getAllowed_access_sources_status());
+            myPreparedStatement.setString("allowed_access_sources_match_type", user_accounts.getAllowed_access_sources_match_type());
+            myPreparedStatement.setString("restricted_access_sources_status", user_accounts.getRestricted_access_sources_status());
+            myPreparedStatement.setString("restricted_access_sources_match_type", user_accounts.getRestricted_access_sources_match_type());
+            myPreparedStatement.setString("gender", user_accounts.getGender());
+            myPreparedStatement.setString("designation", user_accounts.getDesignation());
 
 
             myPreparedStatement.executeUpdate();
@@ -181,7 +182,7 @@ public class MAIN {
         }
     }
 
-    public static void updateUser(UserAccounts user_accounts ) {
+    public static void updateUser(UserAccounts user_accounts) {
         Connection myConn = null;
 
         PreparedStatement myPreparedStatement = null;
@@ -293,7 +294,7 @@ public class MAIN {
 
 
     public static void main(String[] args) {
-        readAllLogs();
+        //readAllLogs();
         //insertUser();"
 //        UserAccounts new_user = new UserAccounts();
 //
@@ -313,7 +314,7 @@ public class MAIN {
 //        new_user.setGender("Male");
 //        new_user.setDesignation("IT_Manager");
 //
-//        insertUser(user);
+//        insertUser(new_user);
 
 //        insertUser("ACTIVE", "API", "username5", "first_name5", "last_name5", "254725111222", "f5l5@gmail.com", "ACTIVE",
 //                "user_pwd5", "ACTIVE",
