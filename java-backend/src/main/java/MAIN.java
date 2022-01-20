@@ -243,17 +243,17 @@ public class MAIN {
     public static void deleteUser(UserAccounts user_accounts) {
         Connection myConn = null;
 
-         PreparedStatement myPreparedStatement = null;
+         NamedPreparedStatement myPreparedStatement = null;
 
         try {
 
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2-monitoring-database", "root", "Pa55w0rd");
 
-            String mySql = "DELETE FROM user_accounts WHERE user_id=?";
+            String mySql = "DELETE FROM user_accounts WHERE user_id=:user_id";
 
-            myPreparedStatement = myConn.prepareStatement(mySql);
+            myPreparedStatement = NamedPreparedStatement.prepareStatement(myConn,mySql);
 
-            myPreparedStatement.setInt(1, user_accounts.getUser_id()); //value of id is 5
+            myPreparedStatement.setInt("user_id", user_accounts.getUser_id()); //value of id is 5
 
 
             myPreparedStatement.executeUpdate();
@@ -325,15 +325,15 @@ public class MAIN {
         //updateUser();
         //updateUser(6,"FeMale","C_E_O");
 
-        UserAccounts update_user =new UserAccounts();
-        update_user.setUser_id(8);
-        update_user.setGender("FeMale");
-        update_user.setDesignation("C_E_O");
-        updateUser(update_user);
+//        UserAccounts update_user =new UserAccounts();
+//        update_user.setUser_id(8);
+//        update_user.setGender("FeMale");
+//        update_user.setDesignation("C_E_O");
+//        updateUser(update_user);
 
-        //deleteUser();
+//        //deleteUser();
 //        UserAccounts delete_user = new UserAccounts();
-//        delete_user.setUser_id(7);
+//        delete_user.setUser_id(8);
 //        deleteUser(delete_user);
 
         //deleteUser(6);
