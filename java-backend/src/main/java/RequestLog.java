@@ -10,6 +10,10 @@ public class RequestLog {
     private String response_headers;
     private String response_body;
     private String error_code;
+    private String error_message;
+    private String error_stacktrace;
+    private String date_created;
+    private String date_modified;
 
     public int getRequest_id() {
         return request_id;
@@ -131,10 +135,6 @@ public class RequestLog {
         this.date_modified = date_modified;
     }
 
-    private String error_message;
-    private String error_stacktrace;
-    private String date_created;
-    private String date_modified;
 
 
 
