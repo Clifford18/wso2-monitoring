@@ -7,14 +7,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GetRequests implements HttpHandler {
+public class GetRequestLogs implements HttpHandler {
 
     @Override
     public void handleRequest(HttpServerExchange exchange) throws Exception {
 
         List<RequestLog> requestLogs = readAllLogs();
 
-        String xmlStr = JavaToJson.convertToXMLStr(requestLogs);
+        String xmlStr = JavaToJSONAndXML.convertToXMLStr(requestLogs);
 
 
         exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
