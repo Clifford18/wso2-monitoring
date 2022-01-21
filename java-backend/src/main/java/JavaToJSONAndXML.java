@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 
-public class JavaToJson {
+public class JavaToJSONAndXML {
     public static void main(String[] args) {
         UserAccounts new_employee = new UserAccounts(5,
                 "ACTIVE",
