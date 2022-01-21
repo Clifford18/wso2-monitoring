@@ -9,11 +9,18 @@ public class RestServer {
     public static void main(String[] args) {
         PathHandler pathHandler = Handlers.path()
                 //.addExactPath(BASE_PORTAL_URL+"/", Routes.portal())
-                .addPrefixPath(BASE_PORTAL_URL+"/request-logs",
+                .addPrefixPath(BASE_PORTAL_URL + "/request-logs",
                         Handlers.routing()
-                                .get("", new GetRequests())
-                                .put("", new GetRequests())
-                                .get("/{requestId}", new GetRequest())
+                                .get("", new GetRequestLogs())
+                                .put("", new GetRequestLogs())
+                                .get("/{requestId}", new GetSingleRequestLog())
+
+                )
+                .addPrefixPath(BASE_PORTAL_URL + "/requests-logs",
+                        Handlers.routing()
+                                .get("", new GetRequestLogs())
+                                .put("", new GetRequestLogs())
+                                .get("/{requestId}", new GetSingleRequestLog())
 
                 );
 
