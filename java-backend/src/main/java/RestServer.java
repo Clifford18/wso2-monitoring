@@ -16,11 +16,11 @@ public class RestServer {
                                 .get("/{requestId}", new GetSingleRequestLog())
 
                 )
-                .addPrefixPath(BASE_PORTAL_URL + "/requests-logs",
+                .addPrefixPath(BASE_PORTAL_URL + "/user-accounts",
                         Handlers.routing()
-                                .get("", new GetRequestLogs())
-                                .put("", new GetRequestLogs())
-                                .get("/{requestId}", new GetSingleRequestLog())
+                                //.get("", new GetRequestLogs())
+                                //.put("", new GetRequestLogs())
+                                .get("/{username}", new UserAccountAuthenctication())
 
                 );
 
