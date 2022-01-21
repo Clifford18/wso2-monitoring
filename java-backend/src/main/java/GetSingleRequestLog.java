@@ -1,16 +1,13 @@
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
-import io.undertow.util.HttpString;
 import io.undertow.util.PathTemplateMatch;
 import io.undertow.util.URLUtils;
 
 import java.nio.charset.StandardCharsets;
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
-public class GetRequest implements HttpHandler {
+public class GetSingleRequestLog implements HttpHandler {
 
     @Override
     public void handleRequest(HttpServerExchange exchange) throws Exception {
@@ -19,7 +16,7 @@ public class GetRequest implements HttpHandler {
 
         RequestLog requestLog = readSingleLog(requestId);
 
-        String json = JavaToJson.convertToJson(requestLog);
+        String json = JavaToJSONAndXML.convertToJson(requestLog);
         exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
         exchange.getResponseSender().send(json);
     }
