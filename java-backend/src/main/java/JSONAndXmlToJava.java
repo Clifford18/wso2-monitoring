@@ -1,7 +1,7 @@
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-public class JsonToJava {
+public class JSONAndXmlToJava {
     public static void main(String[] args) {
         String myJsonStr = "{\n" +
                 "   \"user_id\":5,\n" +
