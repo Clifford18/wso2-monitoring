@@ -1,3 +1,5 @@
+package ke.co.skyworld.wso2_monitoring;
+
 public class UserAccounts {
 
     private int user_id;

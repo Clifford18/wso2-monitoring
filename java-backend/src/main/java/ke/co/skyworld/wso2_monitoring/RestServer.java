@@ -1,3 +1,5 @@
+package ke.co.skyworld.wso2_monitoring;
+
 import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.server.handlers.PathHandler;
@@ -18,8 +20,8 @@ public class RestServer {
                 )
                 .addPrefixPath(BASE_PORTAL_URL + "/user-accounts",
                         Handlers.routing()
-                                //.get("", new GetRequestLogs())
-                                //.put("", new GetRequestLogs())
+                                //.get("", new ke.co.skyworld.wso2_monitoring.GetRequestLogs())
+                                //.put("", new ke.co.skyworld.wso2_monitoring.GetRequestLogs())
                                 .get("/{username}", new UserAccountAuthenctication())
 
                 );

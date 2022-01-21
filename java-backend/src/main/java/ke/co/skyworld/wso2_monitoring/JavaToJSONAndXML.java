@@ -1,3 +1,5 @@
+package ke.co.skyworld.wso2_monitoring;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;

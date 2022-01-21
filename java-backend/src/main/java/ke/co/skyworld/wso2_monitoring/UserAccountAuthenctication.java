@@ -1,7 +1,10 @@
+package ke.co.skyworld.wso2_monitoring;
+
 import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
 import io.undertow.util.PathTemplateMatch;
+import io.undertow.util.StatusCodes;
 import io.undertow.util.URLUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -18,6 +21,40 @@ public class UserAccountAuthenctication implements HttpHandler {
         String username = getPathVar(exchange, "username");
 
         UserAccounts userAccounts = getUser(username);
+
+        if (userAccounts==null){
+
+            class Errors{
+                private String error;
+                private int errorCode;
+
+                public String getError() {
+                    return error;
+                }
+
+                public void setError(String error) {
+                    this.error = error;
+                }
+
+                public int getErrorCode() {
+                    return errorCode;
+                }
+
+                public void setErrorCode(int errorCode) {
+                    this.errorCode = errorCode;
+                }
+            }
+
+            Errors errors = new Errors();
+            errors.setError("Account with the provided username not found");
+            errors.setErrorCode(404);
+
+            exchange.setStatusCode(StatusCodes.NOT_FOUND);
+            exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
+            exchange.getResponseSender().send(JavaToJSONAndXML.convertToJson(errors));
+
+            return;
+        }
 
         String json = JavaToJSONAndXML.convertToJson(userAccounts);
         exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
@@ -45,14 +82,16 @@ public class UserAccountAuthenctication implements HttpHandler {
 
             myResult = myPreparedStatement.executeQuery();
 
-            UserAccounts userAccounts =new UserAccounts();
 
             if (myResult.next()){
+                UserAccounts userAccounts =new UserAccounts();
                 int user_id = myResult.getInt("user_id");
 
                 userAccounts.setUser_id(user_id);
 
                 System.out.println("ID"+user_id);
+
+                return userAccounts;
             }
 
             myResult.close();
@@ -64,7 +103,7 @@ public class UserAccountAuthenctication implements HttpHandler {
             myPreparedStatement = null;
             myResult = null;
 
-            return userAccounts;
+            return null;
 
         } catch (Exception e) {
             e.printStackTrace();

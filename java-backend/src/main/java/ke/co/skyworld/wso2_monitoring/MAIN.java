@@ -1,3 +1,5 @@
+package ke.co.skyworld.wso2_monitoring;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -298,7 +300,7 @@ public class MAIN {
     public static void main(String[] args) {
         //readAllLogs();
         //insertUser();"
-//        UserAccounts new_user = new UserAccounts();
+//        ke.co.skyworld.wso2_monitoring.UserAccounts new_user = new ke.co.skyworld.wso2_monitoring.UserAccounts();
 //
 //        new_user.setUser_status("ACTIVE");
 //        new_user.setAccount_access_mode("API");
@@ -325,14 +327,14 @@ public class MAIN {
         //updateUser();
         //updateUser(6,"FeMale","C_E_O");
 
-//        UserAccounts update_user =new UserAccounts();
+//        ke.co.skyworld.wso2_monitoring.UserAccounts update_user =new ke.co.skyworld.wso2_monitoring.UserAccounts();
 //        update_user.setUser_id(8);
 //        update_user.setGender("FeMale");
 //        update_user.setDesignation("C_E_O");
 //        updateUser(update_user);
 
 //        //deleteUser();
-//        UserAccounts delete_user = new UserAccounts();
+//        ke.co.skyworld.wso2_monitoring.UserAccounts delete_user = new ke.co.skyworld.wso2_monitoring.UserAccounts();
 //        delete_user.setUser_id(8);
 //        deleteUser(delete_user);
 

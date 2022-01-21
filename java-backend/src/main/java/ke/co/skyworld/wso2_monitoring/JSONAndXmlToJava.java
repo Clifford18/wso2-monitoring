@@ -1,5 +1,10 @@
+package ke.co.skyworld.wso2_monitoring;
+
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class JSONAndXmlToJava {
     public static void main(String[] args) {
@@ -37,12 +42,30 @@ public class JSONAndXmlToJava {
                 "   \"date_created\":null,\n" +
                 "   \"date_modified\":null\n" +
                 "}";
-        ObjectMapper myObjectMapper = new ObjectMapper();
+        /*ObjectMapper myObjectMapper = new ObjectMapper();
         try {
            UserAccounts user_accounts = myObjectMapper.readValue( myJsonStr, UserAccounts.class);
             System.out.println(user_accounts.getUser_id()+" "+user_accounts.getGender());
         } catch (JsonProcessingException e) {
             e.printStackTrace();
-        }
+        }*/
+
+        UserAccounts userAccounts = convertToPOJO(myJsonStr, UserAccounts.class);
+        LinkedHashMap<String, Object> requestLog = convertToPOJO(myJsonStr, LinkedHashMap.class);
+        System.out.println(requestLog.get("old_password")+" "+requestLog.get("user_id"));
+
     }
+
+    public static <T> T convertToPOJO(String json, Class<?> clazz){
+        ObjectMapper myObjectMapper = new ObjectMapper();
+        try {
+            Object obj = myObjectMapper.readValue( json, clazz);
+            return (T) obj;
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }

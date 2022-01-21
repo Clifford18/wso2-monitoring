@@ -1,3 +1,5 @@
+package ke.co.skyworld.wso2_monitoring;
+
 public class RequestLog {
     private int request_id;
     private String request_reference;
