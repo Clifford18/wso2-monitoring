@@ -1,7 +1,8 @@
-DROP DATABASE IF EXISTS `wso2-monitoring-database`;
-CREATE DATABASE `wso2-monitoring-database`;
 
-USE `wso2-monitoring-database`;
+DROP DATABASE IF EXISTS `wso2_monitoring_database`;
+CREATE DATABASE `wso2_monitoring_database`;
+
+USE `wso2_monitoring_database`;
 
 CREATE TABLE `genders`
 (
