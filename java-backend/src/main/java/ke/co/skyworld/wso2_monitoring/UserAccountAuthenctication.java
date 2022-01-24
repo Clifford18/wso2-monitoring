@@ -24,27 +24,6 @@ public class UserAccountAuthenctication implements HttpHandler {
 
         if (userAccounts==null){
 
-            class Errors{
-                private String error;
-                private int errorCode;
-
-                public String getError() {
-                    return error;
-                }
-
-                public void setError(String error) {
-                    this.error = error;
-                }
-
-                public int getErrorCode() {
-                    return errorCode;
-                }
-
-                public void setErrorCode(int errorCode) {
-                    this.errorCode = errorCode;
-                }
-            }
-
             Errors errors = new Errors();
             errors.setError("Account with the provided username not found");
             errors.setErrorCode(404);
