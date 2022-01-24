@@ -5,54 +5,16 @@ import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
 import io.undertow.util.HttpString;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
+import static ke.co.skyworld.wso2_monitoring.Pagination.getPageAndPageSize;
+
 public class GetRequestLogs implements HttpHandler {
-
-    @Override
-    public void handleRequest(HttpServerExchange exchange) throws Exception {
-
-        List<RequestLog> requestLogs = readAllLogs(exchange);
-
-        String xmlStr = JavaToJSONAndXML.convertToJson(requestLogs);
-
-        exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
-        exchange.getResponseHeaders().add(new HttpString("RequestType"), "Request Logs");
-        exchange.getResponseSender().send(xmlStr);
-    }
-
-
-    public static int[] getPageAndPageSize(HttpServerExchange exchange) {
-        int[] pageAndPageSize = new int[]{1, 10};
-
-        Deque<String> page = exchange.getQueryParameters().get("page");
-        Deque<String> pageSize = exchange.getQueryParameters().get("pageSize");
-
-        if (page != null) {
-            try {
-                pageAndPageSize[0] = Integer.parseInt(page.getFirst());
-
-                if(pageAndPageSize[0]<1){
-                    return null;
-                }
-
-            } catch (Exception ignore) {
-
-            }
-        }
-
-        if (pageSize != null) {
-            try {
-                pageAndPageSize[1] = Integer.parseInt(pageSize.getFirst());
-            } catch (Exception ignore) {
-
-            }
-        }
-        return pageAndPageSize;
-    }
 
     public static List<RequestLog> readAllLogs(HttpServerExchange exchange) {
         Connection myConn = null;
@@ -65,19 +27,19 @@ public class GetRequestLogs implements HttpHandler {
 
             int[] pagePageSize = getPageAndPageSize(exchange);
 
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2-monitoring-database", "root", "Pa55w0rd");
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2_monitoring_database", "root", "Pa55w0rd");
 
-            String sql = pagePageSize!=null ? "select * from request_logs limit :limit offset :offset": "select * from request_logs";
-
+            //String sql = pagePageSize!=null ? "select * from request_logs limit :myLimit offset :myOffset": "select * from request_logs";
+            String sql = "select * from request_logs limit :myLimit offset :myOffset";
             myStatement = NamedPreparedStatement.prepareStatement(myConn, sql);
 
-            if(pagePageSize!=null){
+
                 int limit = pagePageSize[1];
                 int offset = (pagePageSize[0] - 1) * pagePageSize[1];
 
-                myStatement.setInt("limit", limit);
-                myStatement.setInt("offset", offset);
-            }
+                myStatement.setInt("myLimit", limit);
+                myStatement.setInt("myOffset", offset);
+
 
             myResult = myStatement.executeQuery();
 
@@ -174,5 +136,17 @@ public class GetRequestLogs implements HttpHandler {
         }
 
         return null;
+    }
+
+    @Override
+    public void handleRequest(HttpServerExchange exchange) throws Exception {
+
+        List<RequestLog> requestLogs = readAllLogs(exchange);
+
+        String xmlStr = JavaToJSONAndXML.convertToJson(requestLogs);
+
+        exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
+        exchange.getResponseHeaders().add(new HttpString("RequestType"), "Request Logs");
+        exchange.getResponseSender().send(xmlStr);
     }
 }
