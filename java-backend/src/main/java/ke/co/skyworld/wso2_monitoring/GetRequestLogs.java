@@ -29,16 +29,14 @@ public class GetRequestLogs implements HttpHandler {
 
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2_monitoring_database", "root", "Pa55w0rd");
 
-            //String sql = pagePageSize!=null ? "select * from request_logs limit :myLimit offset :myOffset": "select * from request_logs";
             String sql = "select * from request_logs limit :myLimit offset :myOffset";
             myStatement = NamedPreparedStatement.prepareStatement(myConn, sql);
 
+            int limit = pagePageSize[1];
+            int offset = (pagePageSize[0] - 1) * pagePageSize[1];
 
-                int limit = pagePageSize[1];
-                int offset = (pagePageSize[0] - 1) * pagePageSize[1];
-
-                myStatement.setInt("myLimit", limit);
-                myStatement.setInt("myOffset", offset);
+            myStatement.setInt("myLimit", limit);
+            myStatement.setInt("myOffset", offset);
 
 
             myResult = myStatement.executeQuery();
