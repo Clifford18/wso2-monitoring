@@ -4,6 +4,7 @@ import io.undertow.server.HttpHandler;
 import io.undertow.server.HttpServerExchange;
 import io.undertow.util.Headers;
 import io.undertow.util.PathTemplateMatch;
+import io.undertow.util.StatusCodes;
 import io.undertow.util.URLUtils;
 
 import java.nio.charset.StandardCharsets;
@@ -17,6 +18,19 @@ public class GetSingleRequestLog implements HttpHandler {
         String requestId = getPathVar(exchange, "requestId");
 
         RequestLog requestLog = readSingleLog(requestId);
+
+        if (requestLog==null){
+
+            Errors errors = new Errors();
+            errors.setError("Log with the provided requestId not found");
+            errors.setErrorCode(404);
+
+            exchange.setStatusCode(StatusCodes.NOT_FOUND);
+            exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
+            exchange.getResponseSender().send(JavaToJSONAndXML.convertToJson(errors));
+
+            return;
+        }
 
         String json = JavaToJSONAndXML.convertToJson(requestLog);
         exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
@@ -32,7 +46,7 @@ public class GetSingleRequestLog implements HttpHandler {
 
         try {
 
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2-monitoring-database", "root", "Pa55w0rd");
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2_monitoring_database", "root", "Pa55w0rd");
 
             String sql = "select * from request_logs where request_id = :request_id";
             myStatement = NamedPreparedStatement.prepareStatement(myConn, sql);
@@ -40,11 +54,10 @@ public class GetSingleRequestLog implements HttpHandler {
 
             myResult = myStatement.executeQuery();
 
-            RequestLog requestLog = new RequestLog();
+
 
             if (myResult.next()) {
-
-
+                RequestLog requestLog = new RequestLog();
                 int request_id = myResult.getInt("request_id");
                 String request_reference = myResult.getString("request_reference");
                 String request_method = myResult.getString("request_method");
@@ -80,6 +93,7 @@ public class GetSingleRequestLog implements HttpHandler {
                 //print results
                 System.out.println("ID ::" + request_id);
                 //System.out.println(myResult.getString("request_id"));
+                return requestLog;
             }
 
             myResult.close();
@@ -90,7 +104,7 @@ public class GetSingleRequestLog implements HttpHandler {
             myStatement = null;
             myResult = null;
 
-            return requestLog;
+            return null;
 
         } catch (Exception e) {
             e.printStackTrace();
