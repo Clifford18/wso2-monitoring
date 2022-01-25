@@ -49,7 +49,7 @@ public class UserAccountAuthenctication implements HttpHandler {
 
         try {
 
-            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2-monitoring-database", "root", "Pa55w0rd");
+            myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2_monitoring_database", "root", "Pa55w0rd");
 
             String mySql = "select * from user_accounts WHERE username=:username";
 
@@ -58,9 +58,7 @@ public class UserAccountAuthenctication implements HttpHandler {
             myPreparedStatement.setString("username", username);
             //myPreparedStatement.setString("user_pwd", user_accounts.getUser_pwd());
 
-
             myResult = myPreparedStatement.executeQuery();
-
 
             if (myResult.next()){
                 UserAccounts userAccounts =new UserAccounts();
@@ -76,7 +74,6 @@ public class UserAccountAuthenctication implements HttpHandler {
             myResult.close();
             myPreparedStatement.close();
             myConn.close();
-
 
             myConn = null;
             myPreparedStatement = null;
