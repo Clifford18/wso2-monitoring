@@ -61,7 +61,9 @@ public class UserAccountAuthenctication implements HttpHandler {
             myResult = myPreparedStatement.executeQuery();
 
             if (myResult.next()){
+
                 UserAccounts userAccounts =new UserAccounts();
+
                 int user_id = myResult.getInt("user_id");
 
                 userAccounts.setUser_id(user_id);
