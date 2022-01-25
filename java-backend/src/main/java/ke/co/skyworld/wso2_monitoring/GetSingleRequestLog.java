@@ -19,7 +19,7 @@ public class GetSingleRequestLog implements HttpHandler {
 
         RequestLog requestLog = readSingleLog(requestId);
 
-        if (requestLog==null){
+        if (requestLog == null) {
 
             Errors errors = new Errors();
             errors.setError("Log with the provided requestId not found");
@@ -37,10 +37,10 @@ public class GetSingleRequestLog implements HttpHandler {
         exchange.getResponseSender().send(json);
     }
 
-     public static RequestLog readSingleLog(String requestId) {
+    public static RequestLog readSingleLog(String requestId) {
         Connection myConn = null;
         ;
-         NamedPreparedStatement myStatement = null;
+        NamedPreparedStatement myPreparedStatement = null;
         ;
         ResultSet myResult = null;
 
@@ -49,15 +49,15 @@ public class GetSingleRequestLog implements HttpHandler {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2_monitoring_database", "root", "Pa55w0rd");
 
             String sql = "select * from request_logs where request_id = :request_id";
-            myStatement = NamedPreparedStatement.prepareStatement(myConn, sql);
-            myStatement.setString("request_id", requestId);
+            myPreparedStatement = NamedPreparedStatement.prepareStatement(myConn, sql);
+            myPreparedStatement.setString("request_id", requestId);
 
-            myResult = myStatement.executeQuery();
-
-
+            myResult = myPreparedStatement.executeQuery();
 
             if (myResult.next()) {
+
                 RequestLog requestLog = new RequestLog();
+
                 int request_id = myResult.getInt("request_id");
                 String request_reference = myResult.getString("request_reference");
                 String request_method = myResult.getString("request_method");
@@ -97,11 +97,11 @@ public class GetSingleRequestLog implements HttpHandler {
             }
 
             myResult.close();
-            myStatement.close();
+            myPreparedStatement.close();
             myConn.close();
 
             myConn = null;
-            myStatement = null;
+            myPreparedStatement = null;
             myResult = null;
 
             return null;
@@ -112,8 +112,8 @@ public class GetSingleRequestLog implements HttpHandler {
                 myResult.close();
             } catch (SQLException ignore) {
             }
-            if (myStatement != null) try {
-                myStatement.close();
+            if (myPreparedStatement != null) try {
+                myPreparedStatement.close();
             } catch (SQLException ignore) {
             }
             if (myConn != null) try {
@@ -122,15 +122,15 @@ public class GetSingleRequestLog implements HttpHandler {
             }
 
             myConn = null;
-            myStatement = null;
+            myPreparedStatement = null;
             myResult = null;
         } finally {
             if (myResult != null) try {
                 myResult.close();
             } catch (SQLException ignore) {
             }
-            if (myStatement != null) try {
-                myStatement.close();
+            if (myPreparedStatement != null) try {
+                myPreparedStatement.close();
             } catch (SQLException ignore) {
             }
             if (myConn != null) try {
@@ -139,7 +139,7 @@ public class GetSingleRequestLog implements HttpHandler {
             }
 
             myConn = null;
-            myStatement = null;
+            myPreparedStatement = null;
             myResult = null;
         }
 
@@ -147,9 +147,9 @@ public class GetSingleRequestLog implements HttpHandler {
     }
 
     public static String getPathVar(HttpServerExchange exchange, String pathVarId) {
-        PathTemplateMatch pathMatch = (PathTemplateMatch)exchange.getAttachment(PathTemplateMatch.ATTACHMENT_KEY);
+        PathTemplateMatch pathMatch = (PathTemplateMatch) exchange.getAttachment(PathTemplateMatch.ATTACHMENT_KEY);
         StringBuilder builder = new StringBuilder();
-        URLUtils.decode((String)pathMatch.getParameters().get(pathVarId), StandardCharsets.UTF_8.name(), true, builder);
+        URLUtils.decode((String) pathMatch.getParameters().get(pathVarId), StandardCharsets.UTF_8.name(), true, builder);
         return builder.toString();
     }
 }
