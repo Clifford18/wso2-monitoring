@@ -112,6 +112,28 @@ CREATE TABLE `request_logs`
     KEY `index_request_logs_date_modified` (`date_modified`)
 );
 
+CREATE TABLE `access_tokens`
+(
+    `access_token_id`   bigint unsigned      NOT NULL AUTO_INCREMENT,
+    `user_id`           bigint unsigned NOT NULL,
+    `access_token`      varchar(500)  NOT NULL,
+    `ip_address`        varchar(20) NOT NULL,
+    `time_to_live`      text,
+    `time_units`       text         NOT NULL,
+    `expiration_time`   longtext,
+    `date_created`        datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `date_modified`       datetime     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (`access_token_id`),
+
+    KEY `index_access_tokens_user_id` (`user_id`),
+    KEY `index_access_tokens_access_token` (`access_token`),
+    KEY `index_access_tokens_ip_address` (`ip_address`),
+    KEY `index_access_tokens_date_created` (`date_created`),
+    KEY `index_access_tokens_date_modified` (`date_modified`),
+
+    CONSTRAINT `fk_user_accounts_access_tokens_user_id` FOREIGN KEY (`user_id`) REFERENCES `user_accounts` (`user_id`) ON DELETE RESTRICT ON UPDATE CASCADE
+);
 
 INSERT INTO genders (gender)
 VALUES ('Male'),
