@@ -19,6 +19,7 @@ public class UserAccountAuthenctication implements HttpHandler {
     public void handleRequest(HttpServerExchange exchange) throws Exception {
 
         String username = getPathVar(exchange, "username");
+//        String user_pwd = getPathVar(exchange, "user_pwd");
 
         UserAccounts userAccounts = getUser(username);
 
@@ -51,13 +52,12 @@ public class UserAccountAuthenctication implements HttpHandler {
 
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2_monitoring_database", "root", "Pa55w0rd");
 
-            String mySql = "select * from user_accounts WHERE username=:username";
+            String mySql = "select * from user_accounts WHERE username=:myUsername ";
 
             myPreparedStatement = NamedPreparedStatement.prepareStatement(myConn,mySql);
 
-            myPreparedStatement.setString("username", username);
-            //myPreparedStatement.setString("user_pwd", user_accounts.getUser_pwd());
-
+            myPreparedStatement.setString("myUsername", username);
+           // myPreparedStatement.setString("myPassword", user_pwd);
             myResult = myPreparedStatement.executeQuery();
 
             if (myResult.next()){
@@ -72,6 +72,7 @@ public class UserAccountAuthenctication implements HttpHandler {
 
                 return userAccounts;
             }
+            System.out.println("Username does not exist");
 
             myResult.close();
             myPreparedStatement.close();
