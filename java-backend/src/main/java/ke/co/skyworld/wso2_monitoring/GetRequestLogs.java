@@ -19,7 +19,7 @@ public class GetRequestLogs implements HttpHandler {
     public static List<RequestLog> readAllLogs(HttpServerExchange exchange) {
         Connection myConn = null;
         ;
-        NamedPreparedStatement myStatement = null;
+        NamedPreparedStatement myNamedPreparedStatement = null;
         ;
         ResultSet myResult = null;
 
@@ -30,16 +30,16 @@ public class GetRequestLogs implements HttpHandler {
             myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/wso2_monitoring_database", "root", "Pa55w0rd");
 
             String sql = "select * from request_logs limit :myLimit offset :myOffset";
-            myStatement = NamedPreparedStatement.prepareStatement(myConn, sql);
+            myNamedPreparedStatement = NamedPreparedStatement.prepareStatement(myConn, sql);
 
             int limit = pagePageSize[1];
             int offset = (pagePageSize[0] - 1) * pagePageSize[1];
 
-            myStatement.setInt("myLimit", limit);
-            myStatement.setInt("myOffset", offset);
+            myNamedPreparedStatement.setInt("myLimit", limit);
+            myNamedPreparedStatement.setInt("myOffset", offset);
 
 
-            myResult = myStatement.executeQuery();
+            myResult = myNamedPreparedStatement.executeQuery();
 
             List<RequestLog> requestLogs = new ArrayList<>();
 
@@ -87,11 +87,11 @@ public class GetRequestLogs implements HttpHandler {
             }
 
             myResult.close();
-            myStatement.close();
+            myNamedPreparedStatement.close();
             myConn.close();
 
             myConn = null;
-            myStatement = null;
+            myNamedPreparedStatement = null;
             myResult = null;
 
             return requestLogs;
@@ -102,8 +102,8 @@ public class GetRequestLogs implements HttpHandler {
                 myResult.close();
             } catch (SQLException ignore) {
             }
-            if (myStatement != null) try {
-                myStatement.close();
+            if (myNamedPreparedStatement != null) try {
+                myNamedPreparedStatement.close();
             } catch (SQLException ignore) {
             }
             if (myConn != null) try {
@@ -112,15 +112,15 @@ public class GetRequestLogs implements HttpHandler {
             }
 
             myConn = null;
-            myStatement = null;
+            myNamedPreparedStatement = null;
             myResult = null;
         } finally {
             if (myResult != null) try {
                 myResult.close();
             } catch (SQLException ignore) {
             }
-            if (myStatement != null) try {
-                myStatement.close();
+            if (myNamedPreparedStatement != null) try {
+                myNamedPreparedStatement.close();
             } catch (SQLException ignore) {
             }
             if (myConn != null) try {
@@ -129,7 +129,7 @@ public class GetRequestLogs implements HttpHandler {
             }
 
             myConn = null;
-            myStatement = null;
+            myNamedPreparedStatement = null;
             myResult = null;
         }
 
@@ -141,10 +141,10 @@ public class GetRequestLogs implements HttpHandler {
 
         List<RequestLog> requestLogs = readAllLogs(exchange);
 
-        String xmlStr = JavaToJSONAndXML.convertToJson(requestLogs);
+        String jsonStr = JavaToJSONAndXML.convertToJson(requestLogs);
 
         exchange.getResponseHeaders().add(Headers.CONTENT_TYPE, "application/json");
         exchange.getResponseHeaders().add(new HttpString("RequestType"), "Request Logs");
-        exchange.getResponseSender().send(xmlStr);
+        exchange.getResponseSender().send(jsonStr);
     }
 }
