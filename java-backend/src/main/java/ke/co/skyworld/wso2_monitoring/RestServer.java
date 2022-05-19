@@ -3,6 +3,11 @@ package ke.co.skyworld.wso2_monitoring;
 import io.undertow.Handlers;
 import io.undertow.Undertow;
 import io.undertow.server.handlers.PathHandler;
+import io.undertow.util.Methods;
+import ke.co.skyworld.wso2_monitoring.apis.GetRequestLogs;
+import ke.co.skyworld.wso2_monitoring.apis.GetSingleRequestLog;
+import ke.co.skyworld.wso2_monitoring.apis.UserAccountAuthenctication;
+import ke.co.skyworld.wso2_monitoring.utils.CORSHandler;
 
 public class RestServer {
 
@@ -16,13 +21,15 @@ public class RestServer {
                                 .get("", new GetRequestLogs())
                                 .put("", new GetRequestLogs())
                                 .get("/{requestId}", new GetSingleRequestLog())
+                                .add(Methods.OPTIONS, "/*", new CORSHandler())
 
                 )
                 .addPrefixPath(BASE_PORTAL_URL + "/user-accounts",
                         Handlers.routing()
-                                //.get("", new ke.co.skyworld.wso2_monitoring.GetRequestLogs())
-                                //.put("", new ke.co.skyworld.wso2_monitoring.GetRequestLogs())
+                                //.get("", new ke.co.skyworld.wso2_monitoring.apis.GetRequestLogs())
+                                //.put("", new ke.co.skyworld.wso2_monitoring.apis.GetRequestLogs())
                                 .get("/{username}", new UserAccountAuthenctication())
+                                .get("", new UserAccountAuthenctication())
 
                 );
 
@@ -38,3 +45,5 @@ public class RestServer {
 
     }
 }
+
+
