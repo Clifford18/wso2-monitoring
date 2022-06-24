@@ -1,0 +1,153 @@
+<xs:schema elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+    <xs:element name="MESSAGES">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="LOGIN">
+                    <xs:complexType>
+                        <xs:attribute name="USERNAME" type="requiredString"/>
+                        <xs:attribute name="PASSWORD" type="requiredString"/>
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="CREDIT_TOP_UP">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="ORGANIZATION_ID">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="xs:long">
+                                            <xs:attribute name="TYPE" use="required">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="MEMBER"/>
+                                                        <xs:enumeration value="PARTNER"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="AMOUNT">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="requiredDouble">
+                                            <xs:attribute name="TYPE" use="required">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="DEBIT"/>
+                                                        <xs:enumeration value="CREDIT"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="CURRENCY" type="currencies"/>
+                            <xs:element name="PAYMENT_STATUS" type="paymentStatuses"/>
+                            <xs:element name="PAYMENT_DATE" type="dateTime" minOccurs="0"/>
+                            <xs:element name="PAYMENT_MODE" type="paymentModes"/>
+                            <xs:element name="PAYMENT_REFERENCE" type="requiredString"/>
+                            <xs:element name="PAID_BY">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="IDENTIFIER" type="requiredString"/>
+                                        <xs:element name="NAME" type="requiredString"/>
+                                    </xs:sequence>
+                                    <xs:attribute name="TYPE">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:enumeration value="MSISDN"/>
+                                                <xs:enumeration value="ACCOUNT_NO"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="PAYMENT_DETAILS">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="PAYMENT_ATTACHMENTS" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="ATTACHMENT" minOccurs="0" maxOccurs="unbounded">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="requiredString">
+                                                                    <xs:attribute name="TYPE" use="required">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="xs:string">
+                                                                                <xs:enumeration value="FILE"/>
+                                                                                <xs:enumeration value="TEXT"/>
+                                                                            </xs:restriction>
+                                                                        </xs:simpleType>
+                                                                    </xs:attribute>
+                                                                    <xs:attribute name="FILE_NAME"/>
+                                                                    <xs:attribute name="FILE_SIZE"/>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="NOTES" type="xs:string" minOccurs="0"/>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="INTEGRITY_HASH" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="DATE_TIME" use="required" type="dateTime"/>
+            <xs:attribute name="VERSION" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1.01"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- Element Enumerations -->
+    <xs:simpleType name="currencies">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="KES" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="paymentStatuses">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="PENDING" />
+            <xs:enumeration value="PAID" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="paymentModes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="CASH_DEPOSIT" />
+            <xs:enumeration value="MOBILE_MONEY" />
+            <xs:enumeration value="CHEQUE" />
+            <xs:enumeration value="BANK_WIRE_TRANSFER" />
+            <xs:enumeration value="CARD_PAYMENT" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of Element Enumerations -->
+
+    <!-- Custom Restrictions -->
+    <xs:simpleType name="requiredString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="requiredDouble">
+        <xs:restriction base="xs:double">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="dateTime">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{4}-[01]\d-[0-3]\d [0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of Custom Restrictions -->
+</xs:schema>

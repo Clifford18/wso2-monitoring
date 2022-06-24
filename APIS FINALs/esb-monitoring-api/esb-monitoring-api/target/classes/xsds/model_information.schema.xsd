@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn:flexicore.model_information"
+           xmlns:flex="urn:flexicore.model_information"
+           xmlns="urn:flexicore.model_information"
+           elementFormDefault="qualified">
+
+    <xs:element name="model_information" type="modelInformationComplexType"/>
+
+    <xs:simpleType name="tableNameString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[a-zA-Z_]+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:simpleType name="labelString">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="(\s*[^\s]\s*)+"/>
+        </xs:restriction>
+    </xs:simpleType>
+    
+    <xs:complexType name="modelInformationComplexType">
+        <xs:sequence>
+            <xs:element name="tables">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="table" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="tableNameString">
+                                        <xs:attribute name="alias" use="required">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:pattern value="[a-zA-Z_]+"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:attribute>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+                <xs:unique name="UniqueTableAlias">
+                    <xs:selector xpath="flex:table"/>
+                    <xs:field xpath="@alias"/>
+                </xs:unique>
+
+                <xs:unique name="UniqueTableName">
+                    <xs:selector xpath="flex:table"/>
+                    <xs:field xpath="."/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="fields" type="modelInfoFieldsComplexType">
+                <xs:unique name="UniqueFieldName">
+                    <xs:selector xpath=".//flex:field"/>
+                    <xs:field xpath="@name"/>
+                </xs:unique>
+                <xs:unique name="UniqueGroupName">
+                    <xs:selector xpath=".//flex:group"/>
+                    <xs:field xpath="@name"/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="xml_field_data">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="xml_field" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="dmd_creation">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:pattern value="(\s*[^\s]\s*)*"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="dmd_modification">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:pattern value="(\s*[^\s]\s*)*"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+                                    <xs:element name="dmd_deletion">
+                                        <xs:simpleType>
+                                            <xs:restriction base="xs:string">
+                                                <xs:pattern value="(\s*[^\s]\s*)*"/>
+                                            </xs:restriction>
+                                        </xs:simpleType>
+                                    </xs:element>
+
+                                </xs:sequence>
+                                <xs:attribute name="name" use="required">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:pattern value="[a-zA-Z_]+"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+                <xs:unique name="UniqueXmlColumnName">
+                    <xs:selector xpath="flex:xml_field"/>
+                    <xs:field xpath="@name"/>
+                </xs:unique>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="modelInfoFieldsComplexType">
+        <xs:sequence>
+            <xs:element name="field" type="fieldComplexType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="group" type="groupComplexType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="fieldComplexType">
+        <xs:sequence>
+            <xs:element name="label">
+                <xs:complexType>
+                    <xs:simpleContent>
+                        <xs:extension base="labelString">
+                            <xs:attribute name="column_alias" use="required">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:pattern value="[a-zA-Z_]*"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:attribute>
+                        </xs:extension>
+                    </xs:simpleContent>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="data_type">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="enumeration" minOccurs="0" maxOccurs="unbounded">
+                            <xs:complexType>
+                                <xs:attribute name="value" use="required">
+                                    <xs:simpleType>
+                                        <xs:restriction base="xs:string">
+                                            <xs:pattern value="(\s*[^\s]\s*)+"/>
+                                        </xs:restriction>
+                                    </xs:simpleType>
+                                </xs:attribute>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+
+
+                    <xs:attribute name="type" use="required">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="STRING"/>
+                                <xs:enumeration value="LONG"/>
+                                <xs:enumeration value="INTEGER"/>
+                                <xs:enumeration value="BOOLEAN"/>
+                                <xs:enumeration value="ENUM"/>
+                                <xs:enumeration value="DATE"/>
+                                <xs:enumeration value="TIME"/>
+                                <xs:enumeration value="DATETIME"/>
+                                <xs:enumeration value="DECIMAL"/>
+                                <xs:enumeration value="DOUBLE"/>
+                                <xs:enumeration value="NONE"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="length">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:pattern value="unbounded|(0*[1-9][0-9]*)"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="max">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                                <xs:pattern value="-?\d+"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="min">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                                <xs:pattern value="-?\d+"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="decimal_places">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:integer">
+                                <xs:pattern value="\d+"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="signed">
+                        <xs:simpleType>
+                            <xs:restriction base="xs:string">
+                                <xs:enumeration value="TRUE"/>
+                                <xs:enumeration value="FALSE"/>
+                            </xs:restriction>
+                        </xs:simpleType>
+                    </xs:attribute>
+                    <xs:attribute name="default" type="xs:string"/>
+                    <xs:attribute name="static_value" type="xs:string"/>
+                </xs:complexType>
+                <xs:unique name="UniqueEnumerationDataValue">
+                    <xs:selector xpath="flex:enumeration"/>
+                    <xs:field xpath="@value"/>
+                </xs:unique>
+            </xs:element>
+            <xs:element name="dmd_xpaths">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="addition">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                        <xs:attribute name="use" use="required">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="MANDATORY"/>
+                                                    <xs:enumeration value="OPTIONAL"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:attribute>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+
+                        <xs:element name="modification">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                        <xs:attribute name="use" use="required">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="MANDATORY"/>
+                                                    <xs:enumeration value="OPTIONAL"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:attribute>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+
+                        <xs:element name="deletion">
+                            <xs:complexType>
+                                <xs:simpleContent>
+                                    <xs:extension base="xs:string">
+                                        <xs:attribute name="use"  use="required">
+                                            <xs:simpleType>
+                                                <xs:restriction base="xs:string">
+                                                    <xs:enumeration value="MANDATORY"/>
+                                                    <xs:enumeration value="OPTIONAL"/>
+                                                </xs:restriction>
+                                            </xs:simpleType>
+                                        </xs:attribute>
+                                    </xs:extension>
+                                </xs:simpleContent>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(\s*[^\s]\s*)+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="type" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="TABLE_BASED"/>
+                    <xs:enumeration value="XML_BASED"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="searchable" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="YES"/>
+                    <xs:enumeration value="NO"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="auto_hide" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="YES"/>
+                    <xs:enumeration value="NO"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="table_alias" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-zA-Z_]*"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="fetch_with_all" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:enumeration value="YES"/>
+                    <xs:enumeration value="NO"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="xml_field" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="[a-zA-Z_]*"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+        <xs:attribute name="max_occurs" use="optional">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="unbounded|(0*[1-9][0-9]*)"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+
+    </xs:complexType>
+
+    <xs:complexType name="groupComplexType">
+        <xs:sequence>
+            <xs:element name="field" type="fieldComplexType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="group" type="groupComplexType" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+
+        <xs:attribute name="name" use="required">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:pattern value="(\s*[^\s]\s*)+"/>
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+</xs:schema>

@@ -1,0 +1,28 @@
+<MESSAGES DATE_TIME="2015-01-18 18:22:22" VERSION="1.01">
+    <LOGIN USERNAME="myapi@company.com" PASSWORD="d2781cc94fbb5fa5bc18df96c383930f1c4cd4d0fedd37aa33d6fb752cf2d24a" />
+    <CREDIT_TOP_UP>
+        <ORGANIZATION_ID TYPE="MEMBER/PARTNER">123</ORGANIZATION_ID>
+        <AMOUNT TYPE="CREDIT/DEBIT">120000.00</AMOUNT>
+        <CURRENCY>KES</CURRENCY>
+        <PAYMENT_STATUS>PENDING/PAID</PAYMENT_STATUS>
+        <PAYMENT_DATE>2021-03-12 23:34:48</PAYMENT_DATE>
+        <PAYMENT_MODE>CASH_DEPOSIT/MOBILE_MONEY/CHEQUE/BANK_WIRE_TRANSFER/CARD_PAYMENT</PAYMENT_MODE>
+        <PAYMENT_REFERENCE>OHK4ROG1BK</PAYMENT_REFERENCE>
+        <PAID_BY TYPE="MSISDN/ACCOUNT_NO">
+            <IDENTIFIER>254712345678</IDENTIFIER>
+            <NAME>Cynthia Avilia</NAME>
+        </PAID_BY>
+        <PAYMENT_DETAILS>
+            <PAYMENT_ATTACHMENTS> <!-- Optional -->
+                <ATTACHMENT TYPE="TEXT">OHK4ROG1BK confirmed.You bought Ksh100.00 of airtime on 20/8/20 at 3:07 AM.New M-PESA
+                    balance is Ksh4,702.60. Transaction cost, Ksh0.00. Amount you can transact within the day is 299900.00. To
+                    reverse, forward this message to 456.
+                </ATTACHMENT> <!-- Optional -->
+            </PAYMENT_ATTACHMENTS>
+            <NOTES> <!-- Optional -->
+                Multiple payments made to offset balance
+            </NOTES>
+        </PAYMENT_DETAILS>
+        <INTEGRITY_HASH/>
+    </CREDIT_TOP_UP>
+</MESSAGES>

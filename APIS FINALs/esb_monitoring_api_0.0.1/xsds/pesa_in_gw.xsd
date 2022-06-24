@@ -1,0 +1,121 @@
+<xs:schema attributeFormDefault='unqualified' elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+	<xs:element name='MESSAGES'>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name='LOGIN' minOccurs="0">
+					<xs:complexType>
+						<xs:attribute type='xs:string' name='USERNAME' use='required'/>
+						<xs:attribute type='xs:string' name='PASSWORD' use='required'/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name='PESA'>
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name='SOURCE'>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type='xs:string' name='IDENTIFIER' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='ACCOUNT' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='NAME' minOccurs='1' maxOccurs='1'/>
+										<xs:element name='OTHER_DETAILS' minOccurs='1' maxOccurs='1'>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:any minOccurs='0' maxOccurs='100' processContents='skip'/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute type='xs:string' name='TYPE' use='required'/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name='SENDER'>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type='xs:string' name='IDENTIFIER' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='ACCOUNT' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='NAME' minOccurs='1' maxOccurs='1'/>
+										<xs:element name='OTHER_DETAILS' minOccurs='1' maxOccurs='1'>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:any minOccurs='0' maxOccurs='100' processContents='skip'/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute type='xs:string' name='TYPE' use='required'/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name='RECEIVER'>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type='xs:string' name='IDENTIFIER' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='ACCOUNT' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='NAME' minOccurs='1' maxOccurs='1'/>
+										<xs:element name='OTHER_DETAILS' minOccurs='1' maxOccurs='1'>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:any minOccurs='0' maxOccurs='100' processContents='skip'/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute type='xs:string' name='TYPE' use='required'/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name='BENEFICIARY'>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:element type='xs:string' name='IDENTIFIER' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='ACCOUNT' minOccurs='1' maxOccurs='1'/>
+										<xs:element type='xs:string' name='NAME' minOccurs='1' maxOccurs='1'/>
+										<xs:element name='OTHER_DETAILS' minOccurs='1' maxOccurs='1'>
+											<xs:complexType>
+												<xs:sequence>
+													<xs:any minOccurs='0' maxOccurs='100' processContents='skip'/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+									</xs:sequence>
+									<xs:attribute type='xs:string' name='TYPE' use='required'/>
+								</xs:complexType>
+							</xs:element>
+							<xs:element type='xs:string' name='CURRENCY' minOccurs='1' maxOccurs='1'/>
+							<xs:element type='xs:decimal' name='AMOUNT' minOccurs='1' maxOccurs='1'/>
+							<xs:element type='xs:decimal' name='AVAILABLE_AMOUNT' minOccurs='0' maxOccurs='1'/>
+							<xs:element type='xs:decimal' name='RESERVE_AMOUNT' minOccurs='0' maxOccurs='1'/>
+							<xs:element type='xs:string' name='REQUEST_APPLICATION' minOccurs='1' maxOccurs='1'/>
+							<xs:element type='xs:string' name='REQUEST_CORRELATION_ID' minOccurs='1' maxOccurs='1'/>
+							<xs:element type='xs:string' name='SOURCE_APPLICATION' minOccurs='1' maxOccurs='1'/>
+							<xs:element type='xs:string' name='SOURCE_REFERENCE' minOccurs='1' maxOccurs='1'/>
+							<xs:element type='xs:string' name='REMARK' minOccurs='1' maxOccurs='1'/>
+							<xs:element type='xs:string' name='CATEGORY' minOccurs='0' maxOccurs='1'/>
+							<xs:element type='xs:unsignedLong' name='PRIORITY' minOccurs='0' maxOccurs='1'/>
+							<xs:element type='xs:string' name='DATE_SCHEDULED' minOccurs='0' maxOccurs='1'/>
+							<xs:element type='xs:string' name='DATE_CREATED' minOccurs='1' maxOccurs='1'/>
+							<xs:element name='OTHER_DETAILS' minOccurs='1' maxOccurs='1'>
+								<xs:complexType>
+									<xs:sequence>
+										<xs:any minOccurs='0' maxOccurs='100' processContents='skip'/>
+									</xs:sequence>  
+								</xs:complexType>
+							</xs:element>
+							<xs:element type='xs:string' name='INTEGRITY_HASH' minOccurs='0' maxOccurs='1'/>
+						</xs:sequence>
+						<xs:attribute type='xs:string' name='ORIGINATOR_ID' use='required'/>
+						<xs:attribute type='xs:string' name='SERVER_ID' use='optional'/>
+						<xs:attribute type='xs:string' name='PESA_ID' use='optional'/>
+						<xs:attribute type='xs:unsignedLong' name='PROVIDER_CODE' use='optional'/>
+						<xs:attribute type='xs:unsignedLong' name='PRODUCT_ID' use='optional'/>
+						<xs:attribute type='xs:string' name='TYPE' use='required'/>
+						<xs:attribute type='xs:string' name='ACTION' use='required'/>
+						<xs:attribute type='xs:string' name='COMMAND' use='required'/>
+						<xs:attribute type='xs:string' name='SENSITIVITY' use='required'/>
+						<xs:attribute type='xs:string' name='CHARGE' use='optional'/>  
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+			<xs:attribute type='xs:decimal' name='VERSION' use='required'/>
+			<xs:attribute type='xs:string' name='DATE_TIME' use='required'/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

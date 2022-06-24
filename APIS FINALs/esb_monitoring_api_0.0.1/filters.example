@@ -1,0 +1,5 @@
+filter={user_status:eq:active}
+filter={date:btwn:2019-01-12,2019-12-30 | AND |time:lt:10 |OR| id:!null|AND|login_attempts:gte:10}
+filter={user_status:eq:active|AND|organization:eq:SACCO |OR | (date:btwn:2019-01-12,2019-12-30 | AND | time:lt:10)}
+filter={(application_code:in:101,260,261|AND|memberId:eq:1) |AND| userId:!eq:3}
+filter={(((user_status:eq:active|AND|organization:eq:SACCO)|OR|user_name:like:this like %)|AND|date:!btwn:2019-01-12,2019-12-30)}

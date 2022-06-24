@@ -1,0 +1,111 @@
+<xs:schema elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+    <xs:element name="DASHBOARD">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="STATISTICS">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="CARDS">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="CARD" maxOccurs="5" minOccurs="0">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="LABEL">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="requiredString">
+                                                                    <xs:attribute name="STYLE">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="requiredString"/>
+                                                                        </xs:simpleType>
+                                                                    </xs:attribute>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="VALUE">
+                                                        <xs:complexType>
+                                                            <xs:sequence>
+                                                                <xs:element name="BALANCE">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="requiredString">
+                                                                                <xs:attribute name="STYLE">
+                                                                                    <xs:simpleType>
+                                                                                        <xs:restriction base="requiredString"/>
+                                                                                    </xs:simpleType>
+                                                                                </xs:attribute>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                                <xs:element name="RESERVE">
+                                                                    <xs:complexType>
+                                                                        <xs:simpleContent>
+                                                                            <xs:extension base="requiredString">
+                                                                                <xs:attribute name="STYLE">
+                                                                                    <xs:simpleType>
+                                                                                        <xs:restriction
+                                                                                                base="requiredString"/>
+                                                                                    </xs:simpleType>
+                                                                                </xs:attribute>
+                                                                            </xs:extension>
+                                                                        </xs:simpleContent>
+                                                                    </xs:complexType>
+                                                                </xs:element>
+                                                            </xs:sequence>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                    <xs:element name="ICON">
+                                                        <xs:complexType>
+                                                            <xs:simpleContent>
+                                                                <xs:extension base="requiredString">
+                                                                    <xs:attribute name="STYLE">
+                                                                        <xs:simpleType>
+                                                                            <xs:restriction base="requiredString"/>
+                                                                        </xs:simpleType>
+                                                                    </xs:attribute>
+                                                                </xs:extension>
+                                                            </xs:simpleContent>
+                                                        </xs:complexType>
+                                                    </xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="TYPE" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="CREDIT_BALANCE"/>
+                                                            <xs:enumeration value="B2C_PAYBILL"/>
+                                                            <xs:enumeration value="B2B_PAYBILL"/>
+                                                            <xs:enumeration value="C2B_PAYBILL"/>
+                                                            <xs:enumeration value="E-TOP_UP"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                                <xs:unique name="unique-card-label">
+                                    <xs:selector xpath="CARD"/>
+                                    <xs:field xpath="LABEL"/>
+                                </xs:unique>
+                                <xs:unique name="unique-card-type">
+                                    <xs:selector xpath="CARD"/>
+                                    <xs:field xpath="@TYPE"/>
+                                </xs:unique>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Custom Restrictions -->
+    <xs:simpleType name="requiredString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of Custom Restrictions -->
+</xs:schema>

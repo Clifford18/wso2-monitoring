@@ -1,0 +1,1 @@
+{"doc":" Transport life cycle management is done by the batch module, so this class is used to signal back when the Transport\n resource has had its use for the current send-email / test-connection invocation.\n","fields":[],"enumConstants":[],"methods":[]}

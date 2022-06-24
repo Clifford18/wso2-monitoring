@@ -1,0 +1,201 @@
+MySQL
+-------
+Start MySQL Without Permissions: skip-grant-tables (/etc/mysql/my.cnf)
+Export & Zip: mysqldump db -u root -p | gzip -c | cat > db.sql.gz
+              mysqldump -u root -p --triggers --routines --all-databases | gzip -c | cat > all_databases.bkp.sql.gz
+Unzip & Import: 
+	gunzip < db.sql.gz | mysql -u root -p db
+	OR 
+	tar xzOf db.bkp.sql.tar.gz | mysql -u root -p db
+
+Rename DB: for table in `mysql -u root -pToor3@19# -s -N -e "use sky_master_db;show tables from sky_master_db;"`; do mysql -u root -pToor3@19# -s -N -e "use sky_master_db;rename table sky_master_db.$table to sky_master_db_old.$table;"; done;
+
+Conn Metadata: ?autoReconnect=true&allowMultiQueries=true&useSSL=false&createDatabaseIfNotExist=false&allowPublicKeyRetrieval=true
+
+SET FOREIGN_KEY_CHECKS=0;
+
+Get Size of Databases:
+SELECT table_schema AS 'DB Name', ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) AS 'DB Size in MB' FROM information_schema.tables GROUP BY table_schema;
+
+Get Size of All Databases:
+SELECT ROUND(SUM(data_length + index_length) / 1024 / 1024, 1) AS 'DBs Size in MB' FROM information_schema.tables;
+
+Drop All Databases (Except mysql and information_schema)
+mysql -u root -e "SET FOREIGN_KEY_CHECKS=0; show databases" | grep -v Database | grep -v mysql| grep -v information_schema| gawk '{print "SET FOREIGN_KEY_CHECKS=0; drop database `" $1 "`;select sleep(0.1);"}' | mysql -u root
+
+MSSQL
+--------
+Restore BAK Linux:
+RESTORE FILELISTONLY FROM DISK = '/var/opt/mssql/backup/Sky_Solutions_db'
+
+RESTORE DATABASE sky_solutions_db
+FROM DISK = '/var/opt/mssql/backup/Sky_Solutions_db'
+WITH MOVE 'sky_solutions_db' TO '/var/opt/mssql/data/sky_solutions_db.mdf',
+MOVE 'sky_solutions_db_log' TO '/var/opt/mssql/data/sky_solutions_db_log.ldf'
+GO
+
+Backup MSSQL Server DB on Linux:
+Backup DB:
+sqlcmd -S localhost -U SA -Q "BACKUP DATABASE [sky_solutions_db] TO DISK = N'/var/opt/mssql/backup/sky_solutions_db.bak' WITH NOFORMAT, NOINIT, NAME = 'sky_solutions_db-full', SKIP, NOREWIND, NOUNLOAD, STATS = 10"
+
+Backup Logs:
+sqlcmd -S localhost -U SA -Q "BACKUP LOG [sky_solutions_db] TO DISK = N'/var/opt/mssql/backup/sky_solutions_db_LogBackup.bak' WITH NOFORMAT, NOINIT, NAME = N'sky_solutions_db_LogBackup', NOSKIP, NOREWIND, NOUNLOAD, STATS = 5"
+
+Restore DB:
+sqlcmd -S localhost -U SA -Q "RESTORE DATABASE [sky_solutions_db] FROM DISK = N'/var/opt/mssql/backup/sky_solutions_db.bak' WITH FILE = 1, NOUNLOAD, REPLACE, NORECOVERY, STATS = 5"
+
+Restore Logs:
+sqlcmd -S localhost -U SA -Q "RESTORE LOG sky_solutions_db FROM DISK = N'/var/opt/mssql/backup/sky_solutions_db_LogBackup.bak'"
+
+Finish Restore & Make DB available to users:
+Login to MSSQL:
+sqlcmd -S localhost -U SA -P 'Toor3@19#'
+
+Execute:
+RESTORE DATABASE sky_solutions_db WITH RECOVERY;
+GO
+
+
+
+DOCKER
+-------
+docker run -d --name ps -p 127.0.0.1:3307:3306 -e MYSQL_ROOT_PASSWORD=Toor3@19# percona/percona-server:5.7
+
+
+PostgreSQL
+----------
+DB=[YOUR_DB_NAME]
+OWNER=[NEW_OWNER]
+
+# alter tables owner
+for tbl in `psql -qAt -c "select tablename from pg_tables where schemaname = 'public';" $DB` ; do  psql -c "alter table \"$tbl\" owner to $OWNER" $DB ; done
+
+# alter sequences owner
+for tbl in `psql -qAt -c "select sequence_name from information_schema.sequences where sequence_schema = 'public';" $DB` ; do  psql -c "alter table \"$tbl\" owner to $OWNER" $DB ; done
+
+# alter views owner
+for tbl in `psql -qAt -c "select table_name from information_schema.views where table_schema = 'public';" $DB` ; do  psql -c "alter table \"$tbl\" owner to $OWNER" $DB ; done
+
+#set timezone
+psql -c "ALTER DATABASE\"$DB\" SET timezone TO 'Africa/Nairobi';" $DB
+
+
+General
+-------
+Get Path to Executable using PID: sudo pwdx $PID
+
+SSH Tunneling: 
+ssh -p 5000 -L 3307:localhost:15700 skyworld@197.248.169.90
+ssh -p 4022 -L 8101:172.17.21.40:8101 steve@197.248.38.196
+
+Decomiple JAR:
+java -cp "/home/elon/Apps/idea-IU-191.7479.19/plugins/java-decompiler/lib/java-decompiler.jar" org.jetbrains.java.decompiler.main.decompiler.ConsoleDecompiler -hdc=0 -dgs=1 -rsy=1 -rbr=1 -lit=1 -nls=1 -mpm=60 MSGClient.jar src
+
+Setting correct permissions for www-data folder:
+sudo chown -R www-data:www-data /var/www/html/site
+sudo chmod go-rwx /var/www/html/site
+sudo chmod go+x /var/www/html/site
+sudo chgrp -R www-data /var/www/html/site
+sudo chmod -R go-rwx /var/www/html/site
+sudo chmod -R g+rx /var/www/html/site
+sudo chmod -R g+rwx /var/www/html/site
+
+Initialize Maven Project:
+mvn archetype:generate -DgroupId=ke.co.skyworld -DartifactId=x-bulk-payment-processor -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 -DinteractiveMode=false
+
+Import local .jar into maven project
+mvn install:install-file \
+        -Dfile=lib/sling-ring-v0.1.0.jar \
+        -DgroupId=ke.co.skyworld \
+        -DartifactId=sling-ring \
+        -Dversion=0.1.0 \
+        -Dpackaging=jar \
+        -DgeneratePom=true
+        
+Create WSO2 Connector Maven Project:
+mvn org.apache.maven.plugins:maven-archetype-plugin:2.4:generate -DarchetypeGroupId=org.wso2.carbon.extension.archetype -DarchetypeArtifactId=org.wso2.carbon.extension.esb.connector-archetype -DarchetypeVersion=2.0.4 -DgroupId=ke.skyworld.esb.connector -DartifactId=ke.skyworld.esb.connector.sky_crypto -Dversion=1.0.0 -DarchetypeRepository=http://maven.wso2.org/nexus/content/repositories/wso2-public/
+        
+Remove local .jar from maven repository
+mvn dependency:purge-local-repository -DmanualInclude="[groupId]:[artifactId],..."
+mvn dependency:purge-local-repository -DmanualInclude="ke.co.skyworld:sling-ring"
+
+VMWare Linux Guest Networking Issues
+-------------------------------------
+nmcli networking off
+nmcli networking on
+sudo systemctl restart NetworkManager.service
+
+XTreme API
+-------------
+sudo systemctl stop mbanking.service
+sudo systemctl start mbanking.service
+sudo journalctl -fu mbanking.service
+sudo vi /var/www/html/mbanking.net/appsettings.json 
+
+
+WSO2 EI
+----------
+Add CA Cert to Ubuntu
+----------------------
+sudo cp TelkomServerCertificate.crt /usr/share/ca-certificates/extra/
+sudo dpkg-reconfigure ca-certificates
+*NB: Press Space Bar to select/descelect
+
+Read Cert
+----------
+openssl x509 -text -noout -in certificate.crt 
+
+
+Check SSL Certificate Details - Externally
+---------------------------------------------
+openssl s_client -servername 192.168.2.50 -connect 192.168.2.50:8243 | openssl x509 -noout -dates
+
+
+Add CA Cert to WSO2 Key Store
+------------------------------
+cd $EI_HOME/repository/resources/security/
+keytool -list -v -keystore client-truststore.jks
+keytool -import -alias api.telkom.co.ke  -file ~/TelkomServerCertificate.crt -keystore client-truststore.jks
+keytool -delete -alias api.telkom.co.ke -keystore client-truststore.jks
+
+
+Create KJS Key Store for SSL/TLS
+-------------------------------------
+openssl pkcs12 -export -in ~/Telkom/pg01.skyworld.co.ke.crt -inkey ~/Telkom/pg01.skyworld.co.ke.key -name "pg01.skyworld.co.ke" -out pg01.skyworld.co.ke.pfx
+keytool -importkeystore -srckeystore pg01.skyworld.co.ke.pfx -srcstoretype pkcs12 -destkeystore pg01.skyworld.co.ke.jks -deststoretype JKS
+
+
+Downgrade Java / Install Specific Version
+------------------------------------------
+java -version
+sudo apt-get remove openjdk*
+java -version
+sudo apt-get clean
+sudo apt-get update
+sudo apt list -a openjdk-8-jdk
+sudo apt-get install openjdk-8-jre=8u252-b09-1ubuntu1 openjdk-8-jre-headless=8u252-b09-1ubuntu1 openjdk-8-jdk-headless=8u252-b09-1ubuntu1 openjdk-8-jdk=8u252-b09-1ubuntu1
+
+Remove / Uninstall systemctl Service
+--------------------------------------
+SERVICE_NAME=esb-wso2-ei
+sudo systemctl stop $SERVICE_NAME
+sudo systemctl disable $SERVICE_NAME
+sudo rm /etc/systemd/system/$SERVICE_NAME
+sudo rm /etc/init.d/esb-wso2-ei
+sudo systemctl daemon-reload
+sudo systemctl reset-failed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

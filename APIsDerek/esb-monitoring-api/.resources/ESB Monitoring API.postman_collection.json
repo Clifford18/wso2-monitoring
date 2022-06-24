@@ -1,0 +1,929 @@
+{
+	"info": {
+		"_postman_id": "ed6ef1c1-8edc-4152-9ab0-109272caf615",
+		"name": "ESB Monitoring API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1301684"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Get Access Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/o/token?username=johnkarani@skyworld.co.ke&auth_hash=JDJhJDA0JEpCU1lQL3RTWDJZeG5xODkwN3B5cC5qa2tpOWdhWVhFenVHamhUdkFNaGtaS0lGYW4xeXhH&grant_type=password&client=web",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"o",
+								"token"
+							],
+							"query": [
+								{
+									"key": "username",
+									"value": "johnkarani@skyworld.co.ke"
+								},
+								{
+									"key": "auth_hash",
+									"value": "JDJhJDA0JEpCU1lQL3RTWDJZeG5xODkwN3B5cC5qa2tpOWdhWVhFenVHamhUdkFNaGtaS0lGYW4xeXhH"
+								},
+								{
+									"key": "grant_type",
+									"value": "password"
+								},
+								{
+									"key": "client",
+									"value": "web"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Access Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/o/token?username=johnkarani@skyworld.co.ke&auth_hash=JDJhJDA0JEpCU1lQL3RTWDJZeG5xODkwN3B5cC5qa2tpOWdhWVhFenVHamhUdkFNaGtaS0lGYW4xeXhH&grant_type=password&client=web",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"o",
+										"token"
+									],
+									"query": [
+										{
+											"key": "username",
+											"value": "johnkarani@skyworld.co.ke"
+										},
+										{
+											"key": "auth_hash",
+											"value": "JDJhJDA0JEpCU1lQL3RTWDJZeG5xODkwN3B5cC5qa2tpOWdhWVhFenVHamhUdkFNaGtaS0lGYW4xeXhH"
+										},
+										{
+											"key": "grant_type",
+											"value": "password"
+										},
+										{
+											"key": "client",
+											"value": "web"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2815"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:07:13 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token_id\": 18,\n    \"access_token\": \"fhkQbhhYDVUiU2cWsS7iIjlSQFsb26DIwftKOwSKmrcEl2GiBnNtmjg1vlASdIhgL2RXqb0Y9naNrGaa\",\n    \"user_id\": 1,\n    \"auth_ip_address\": \"0:0:0:0:0:0:0:1\",\n    \"scope\": \"GLOBAL\",\n    \"time_to_live\": 3600,\n    \"time_unit\": \"SECONDS\",\n    \"date_created\": \"2022-05-26 12:07:12\",\n    \"user_account\": {\n        \"user_id\": 1,\n        \"user_status\": \"ACTIVE\",\n        \"user_status_description\": \"ACTIVE\",\n        \"user_status_date\": \"2022-05-25 17:03:05\",\n        \"account_access_mode\": \"INTERACTIVE\",\n        \"username\": \"johnkarani@skyworld.co.ke\",\n        \"first_name\": \"John\",\n        \"last_name\": \"Karani\",\n        \"gender\": \"MALE\",\n        \"designation\": \"ICT Manager\",\n        \"mobile_number\": 254721303295,\n        \"email_address\": \"johnkarani@skyworld.co.ke\",\n        \"user_pwd_status\": \"ACTIVE\",\n        \"user_pwd_status_date\": \"2022-05-26 12:07:12\",\n        \"login_attempts\": 1,\n        \"max_login_attempts\": 5,\n        \"allowed_access_sources_status\": \"INACTIVE\",\n        \"allowed_access_sources_match_type\": \"STRING\",\n        \"max_allowed_access_sources\": 5,\n        \"allowed_access_sources\": \"192.168.2.128,0:0:0:0:0:0:0:1\",\n        \"restricted_access_sources_status\": \"INACTIVE\",\n        \"restricted_access_sources_match_type\": \"STRING\",\n        \"max_restricted_access_sources\": 5,\n        \"restricted_access_sources\": \"192.168.2.128,0:0:0:0:0:0:0:0:1\",\n        \"tracking_id\": \"dalwh0jababz29jrnw9acy91gute5wjw\",\n        \"tracking_source_ip\": \"0:0:0:0:0:0:0:1\",\n        \"tracking_url\": \"/\",\n        \"tracking_time\": \"2022-05-25 22:06:54\",\n        \"tracking_referrer\": \"/\",\n        \"date_created\": \"2022-05-25 17:06:47\",\n        \"date_modified\": \"2022-05-26 12:07:12\",\n        \"app_user_groups\": [\n            {\n                \"user_app_user_groups_id\": 1,\n                \"group_id\": 1,\n                \"date_created\": \"2022-05-25 17:07:05\",\n                \"date_modified\": \"2022-05-25 17:07:05\",\n                \"app_user_rights_by_group_id\": [\n                    {\n                        \"user_rights_id\": 1,\n                        \"app_code\": 101,\n                        \"user_rights\": \"<RIGHTS>\\n    <PERMISSIONS INPUT=\\\"NO\\\" APPROVE=\\\"NO\\\" VIEW=\\\"YES\\\" EDIT=\\\"NO\\\" DELETE=\\\"NO\\\" EXECUTE=\\\"NO\\\">\\n        <APPROVAL_LEVELS />\\n    </PERMISSIONS>\\n</RIGHTS>\",\n                        \"group_id\": 1,\n                        \"date_created\": \"2022-05-25 17:02:33\",\n                        \"date_modified\": \"2022-05-25 17:02:33\"\n                    }\n                ]\n            },\n            {\n                \"user_app_user_groups_id\": 2,\n                \"group_id\": 2,\n                \"date_created\": \"2022-05-25 17:07:05\",\n                \"date_modified\": \"2022-05-25 17:07:05\",\n                \"app_user_rights_by_group_id\": [\n                    {\n                        \"user_rights_id\": 2,\n                        \"app_code\": 201,\n                        \"user_rights\": \"<RIGHTS>\\n    <PERMISSIONS INPUT=\\\"NO\\\" APPROVE=\\\"NO\\\" VIEW=\\\"YES\\\" EDIT=\\\"NO\\\" DELETE=\\\"NO\\\" EXECUTE=\\\"NO\\\">\\n        <APPROVAL_LEVELS />\\n    </PERMISSIONS>\\n</RIGHTS>\",\n                        \"group_id\": 2,\n                        \"date_created\": \"2022-05-25 17:02:33\",\n                        \"date_modified\": \"2022-05-25 17:02:33\"\n                    }\n                ]\n            }\n        ]\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Check User Email",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/o/check-user-email?email=moses@skyworld.co.ke",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"o",
+								"check-user-email"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "moses@skyworld.co.ke"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Access Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "fhkQbhhYDVUiU2cWsS7iIjlSQFsb26DIwftKOwSKmrcEl2GiBnNtmjg1vlASdIhgL2RXqb0Y9naNrGaa",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/o/refresh?activePage=POSTMAN",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"o",
+								"refresh"
+							],
+							"query": [
+								{
+									"key": "activePage",
+									"value": "POSTMAN"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Refresh Access Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "fhkQbhhYDVUiU2cWsS7iIjlSQFsb26DIwftKOwSKmrcEl2GiBnNtmjg1vlASdIhgL2RXqb0Y9naNrGaa",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/o/refresh?activePage=POSTMAN",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"o",
+										"refresh"
+									],
+									"query": [
+										{
+											"key": "activePage",
+											"value": "POSTMAN"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "305"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:14:51 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"access_token_id\": 19,\n    \"access_token\": \"snVfMoY5ZaFi5rVGMgS2sLCkYgfJvhwQ9DZxbi4cQVuzO4RkoaWP5DovMLeg7pan19hsbPsL3YbiBFgf\",\n    \"user_id\": 1,\n    \"auth_ip_address\": \"0:0:0:0:0:0:0:1\",\n    \"scope\": \"GLOBAL\",\n    \"time_to_live\": 3600,\n    \"time_unit\": \"SECONDS\",\n    \"date_created\": \"2022-05-26 12:14:51\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Revoke Access Token",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "snVfMoY5ZaFi5rVGMgS2sLCkYgfJvhwQ9DZxbi4cQVuzO4RkoaWP5DovMLeg7pan19hsbPsL3YbiBFgf",
+								"type": "text"
+							},
+							{
+								"key": "",
+								"value": "member",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{host}}/o/revoke",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"o",
+								"revoke"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Revoke Access Token",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "snVfMoY5ZaFi5rVGMgS2sLCkYgfJvhwQ9DZxbi4cQVuzO4RkoaWP5DovMLeg7pan19hsbPsL3YbiBFgf",
+										"type": "text"
+									},
+									{
+										"key": "",
+										"value": "member",
+										"type": "text",
+										"disabled": true
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{host}}/o/revoke",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"o",
+										"revoke"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:15:04 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
+				},
+				{
+					"name": "Verify Password",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "PIMRyv2p8hgvexVYbkiNFPSq8AQ3s5WFDafeysCCdDGvoh382ApfqBiUHrUxSLP5aEFW2uXeAQ0fa3kt",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/o/verify-password?activePage=/&auth_hash=JDJhJDA0JEswdGZXMzguT2JSZGlyTHhleFp3YU9USEYuVXdteFN3Y3JZRm5OSFlFVFV2LjhHcFBXNlBp",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"o",
+								"verify-password"
+							],
+							"query": [
+								{
+									"key": "activePage",
+									"value": "/"
+								},
+								{
+									"key": "auth_hash",
+									"value": "JDJhJDA0JEswdGZXMzguT2JSZGlyTHhleFp3YU9USEYuVXdteFN3Y3JZRm5OSFlFVFV2LjhHcFBXNlBp"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Verify Password",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "PIMRyv2p8hgvexVYbkiNFPSq8AQ3s5WFDafeysCCdDGvoh382ApfqBiUHrUxSLP5aEFW2uXeAQ0fa3kt",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/o/verify-password?activePage=/&auth_hash=JDJhJDA0JEswdGZXMzguT2JSZGlyTHhleFp3YU9USEYuVXdteFN3Y3JZRm5OSFlFVFV2LjhHcFBXNlBp",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"o",
+										"verify-password"
+									],
+									"query": [
+										{
+											"key": "activePage",
+											"value": "/"
+										},
+										{
+											"key": "auth_hash",
+											"value": "JDJhJDA0JEswdGZXMzguT2JSZGlyTHhleFp3YU9USEYuVXdteFN3Y3JZRm5OSFlFVFV2LjhHcFBXNlBp"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "4"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:15:41 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "true"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Me",
+			"item": [
+				{
+					"name": "Get Me",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "PIMRyv2p8hgvexVYbkiNFPSq8AQ3s5WFDafeysCCdDGvoh382ApfqBiUHrUxSLP5aEFW2uXeAQ0fa3kt",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/me/?activePage=/&portal=member",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"me",
+								""
+							],
+							"query": [
+								{
+									"key": "activePage",
+									"value": "/"
+								},
+								{
+									"key": "portal",
+									"value": "member"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Me",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "PIMRyv2p8hgvexVYbkiNFPSq8AQ3s5WFDafeysCCdDGvoh382ApfqBiUHrUxSLP5aEFW2uXeAQ0fa3kt",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/me/?activePage=/&portal=member",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"me",
+										""
+									],
+									"query": [
+										{
+											"key": "activePage",
+											"value": "/"
+										},
+										{
+											"key": "portal",
+											"value": "member"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2824"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:15:52 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user_id\": 1,\n    \"user_status\": \"ACTIVE\",\n    \"user_status_description\": \"ACTIVE\",\n    \"user_status_date\": \"2022-05-25 17:03:05\",\n    \"account_access_mode\": \"INTERACTIVE\",\n    \"username\": \"johnkarani@skyworld.co.ke\",\n    \"first_name\": \"John\",\n    \"last_name\": \"Karani\",\n    \"gender\": \"MALE\",\n    \"designation\": \"ICT Manager\",\n    \"mobile_number\": 254721303295,\n    \"email_address\": \"johnkarani@skyworld.co.ke\",\n    \"user_pwd_status\": \"ACTIVE\",\n    \"user_pwd_status_date\": \"2022-05-26 12:15:52\",\n    \"login_attempts\": 0,\n    \"max_login_attempts\": 5,\n    \"allowed_access_sources_status\": \"INACTIVE\",\n    \"allowed_access_sources_match_type\": \"STRING\",\n    \"max_allowed_access_sources\": 5,\n    \"allowed_access_sources\": \"192.168.2.128,0:0:0:0:0:0:0:1\",\n    \"restricted_access_sources_status\": \"INACTIVE\",\n    \"restricted_access_sources_match_type\": \"STRING\",\n    \"max_restricted_access_sources\": 5,\n    \"restricted_access_sources\": \"192.168.2.128,0:0:0:0:0:0:0:0:1\",\n    \"tracking_id\": \"anve8ymu8w41kkctjp4v6rqokqrfsc61\",\n    \"tracking_source_ip\": \"0:0:0:0:0:0:0:1\",\n    \"tracking_url\": \"/\",\n    \"tracking_time\": \"2022-05-26 12:15:52\",\n    \"tracking_referrer\": \"/\",\n    \"date_created\": \"2022-05-25 17:06:47\",\n    \"date_modified\": \"2022-05-26 12:15:52\",\n    \"user_user_groups\": [\n        {\n            \"group_id\": 1,\n            \"group_name\": \"ATM Bridge Admin\",\n            \"group_description\": \"ATM Bridge Admin\",\n            \"date_created\": \"2022-05-25 17:01:10\",\n            \"date_modified\": \"2022-05-25 17:01:10\",\n            \"app_user_rights_by_group_id\": [\n                {\n                    \"user_rights_id\": 1,\n                    \"app_code\": 101,\n                    \"user_rights\": \"<RIGHTS>\\n    <PERMISSIONS INPUT=\\\"NO\\\" APPROVE=\\\"NO\\\" VIEW=\\\"YES\\\" EDIT=\\\"NO\\\" DELETE=\\\"NO\\\" EXECUTE=\\\"NO\\\">\\n        <APPROVAL_LEVELS />\\n    </PERMISSIONS>\\n</RIGHTS>\",\n                    \"group_id\": 1,\n                    \"date_created\": \"2022-05-25 17:02:33\",\n                    \"date_modified\": \"2022-05-25 17:02:33\"\n                }\n            ]\n        },\n        {\n            \"group_id\": 2,\n            \"group_name\": \"Members Portal Admin\",\n            \"group_description\": \"Members Portal Admin\",\n            \"date_created\": \"2022-05-25 17:01:10\",\n            \"date_modified\": \"2022-05-25 17:01:10\",\n            \"app_user_rights_by_group_id\": [\n                {\n                    \"user_rights_id\": 2,\n                    \"app_code\": 201,\n                    \"user_rights\": \"<RIGHTS>\\n    <PERMISSIONS INPUT=\\\"NO\\\" APPROVE=\\\"NO\\\" VIEW=\\\"YES\\\" EDIT=\\\"NO\\\" DELETE=\\\"NO\\\" EXECUTE=\\\"NO\\\">\\n        <APPROVAL_LEVELS />\\n    </PERMISSIONS>\\n</RIGHTS>\",\n                    \"group_id\": 2,\n                    \"date_created\": \"2022-05-25 17:02:33\",\n                    \"date_modified\": \"2022-05-25 17:02:33\"\n                }\n            ]\n        }\n    ],\n    \"access_token\": {\n        \"access_token_id\": 20,\n        \"access_token\": \"PIMRyv2p8hgvexVYbkiNFPSq8AQ3s5WFDafeysCCdDGvoh382ApfqBiUHrUxSLP5aEFW2uXeAQ0fa3kt\",\n        \"user_id\": 1,\n        \"auth_ip_address\": \"0:0:0:0:0:0:0:1\",\n        \"scope\": \"GLOBAL\",\n        \"time_to_live\": 3600,\n        \"time_unit\": \"SECONDS\",\n        \"date_created\": \"2022-05-26 12:15:29\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Me",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "PIMRyv2p8hgvexVYbkiNFPSq8AQ3s5WFDafeysCCdDGvoh382ApfqBiUHrUxSLP5aEFW2uXeAQ0fa3kt",
+								"type": "text"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"user_pwd\": \"Esb2022$\"\n}"
+						},
+						"url": {
+							"raw": "{{host}}/me/?activePage=/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"me",
+								""
+							],
+							"query": [
+								{
+									"key": "activePage",
+									"value": "/"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Me",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "PIMRyv2p8hgvexVYbkiNFPSq8AQ3s5WFDafeysCCdDGvoh382ApfqBiUHrUxSLP5aEFW2uXeAQ0fa3kt",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"user_pwd\": \"Esb2022$\"\n}"
+								},
+								"url": {
+									"raw": "{{host}}/me/?activePage=/",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"me",
+										""
+									],
+									"query": [
+										{
+											"key": "activePage",
+											"value": "/"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "173"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:16:04 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"user_id\": 1,\n    \"date_modified\": \"2022-05-26 12:16:04\",\n    \"user_pwd\": \"37117c2634965b85a96ee09ba319bbcad708f24228e83d8caee9ac276c7beb44\",\n    \"pkValues\": \"user_id,1\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Request Logs",
+			"item": [
+				{
+					"name": "Get Request Log",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "fhkQbhhYDVUiU2cWsS7iIjlSQFsb26DIwftKOwSKmrcEl2GiBnNtmjg1vlASdIhgL2RXqb0Y9naNrGaa",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/request-logs/1?activePage=/&appCode=101",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"request-logs",
+								"1"
+							],
+							"query": [
+								{
+									"key": "activePage",
+									"value": "/"
+								},
+								{
+									"key": "appCode",
+									"value": "101"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Request Log",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "fhkQbhhYDVUiU2cWsS7iIjlSQFsb26DIwftKOwSKmrcEl2GiBnNtmjg1vlASdIhgL2RXqb0Y9naNrGaa",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/request-logs/1?activePage=/&appCode=101",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"request-logs",
+										"1"
+									],
+									"query": [
+										{
+											"key": "activePage",
+											"value": "/"
+										},
+										{
+											"key": "appCode",
+											"value": "101"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "891"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:14:32 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"request_id\": 1,\n    \"app_code\": 101,\n    \"app_name\": \"ATM BRIDGE\",\n    \"request_reference\": \"f57c8495-dcd2-11ec-a62f-00505628d96b\",\n    \"request_method\": \"POST\",\n    \"request_resource\": \"/resource/uri\",\n    \"request_parameters\": \"appCode=101&filter=NONE\",\n    \"request_headers\": \"Authorization: Bearer Token\",\n    \"request_body\": \"Create & Set up Database for Gibbon\\n       - CREATE DATABASE mcec_portal_db;\\n       - CREATE USER 'mcec_portal'@'192.168.140.142' IDENTIFIED BY 'MC3C#P02t4l@22!';\\n       - GRANT ALL ON mcec_portal_db.* TO 'mcec_portal'@'192.168.140.142';\\n       - FLUSH PRIVILEGES;\",\n    \"request_origin_ip\": \"192.168.2.128\",\n    \"request_status\": \"PENDING\",\n    \"response_headers\": null,\n    \"response_body\": null,\n    \"error_code\": null,\n    \"error_message\": null,\n    \"error_stacktrace\": null,\n    \"date_created\": \"2022-05-26 12:06:44\",\n    \"date_modified\": \"2022-05-26 12:09:54\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Request Logs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Vd8VvLjk1PNRrZYLgvNNUm8hZWuqIzh0eZh5IpSayxCK3wPLVNytjxF9fQ5bPcTRunT6OpmA7hXnuipQ",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{host}}/request-logs/?activePage=/&appCode=201",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"request-logs",
+								""
+							],
+							"query": [
+								{
+									"key": "activePage",
+									"value": "/"
+								},
+								{
+									"key": "appCode",
+									"value": "201"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Request Logs",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Vd8VvLjk1PNRrZYLgvNNUm8hZWuqIzh0eZh5IpSayxCK3wPLVNytjxF9fQ5bPcTRunT6OpmA7hXnuipQ",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{host}}/request-logs/?activePage=/&appCode=201",
+									"host": [
+										"{{host}}"
+									],
+									"path": [
+										"request-logs",
+										""
+									],
+									"query": [
+										{
+											"key": "activePage",
+											"value": "/"
+										},
+										{
+											"key": "appCode",
+											"value": "201"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Access-Control-Allow-Headers",
+									"value": "Content-Type, Accept, Authorization, Content-Disposition"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2003"
+								},
+								{
+									"key": "Access-Control-Allow-Methods",
+									"value": "POST, GET, OPTIONS, PUT, PATCH, DELETE"
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 26 May 2022 09:16:36 GMT"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"domain\": \"request_logs\",\n    \"currentPage\": 1,\n    \"pageSize\": 10,\n    \"totalCount\": 0,\n    \"records\": [\n        {\n            \"request_id\": 3,\n            \"app_code\": 201,\n            \"app_name\": \"MEMBERS PORTAL\",\n            \"request_reference\": \"f57c8495-dcd2-11ec-a62f-00505628d96b-2\",\n            \"request_method\": \"POST\",\n            \"request_resource\": \"/resource/uri\",\n            \"request_parameters\": \"appCode=101&filter=NONE\",\n            \"request_headers\": \"Authorization: Bearer Token\",\n            \"request_body\": \"Create & Set up Database for Gibbon\\n       - CREATE DATABASE mcec_portal_db;\\n       - CREATE USER 'mcec_portal'@'192.168.140.142' IDENTIFIED BY 'MC3C#P02t4l@22!';\\n       - GRANT ALL ON mcec_portal_db.* TO 'mcec_portal'@'192.168.140.142';\\n       - FLUSH PRIVILEGES;\",\n            \"request_origin_ip\": \"192.168.2.128\",\n            \"request_status\": \"ERROR\",\n            \"response_headers\": \"Authorization: Bearer Token\",\n            \"response_body\": \"<VirtualHost *:80>\\n    #ServerName example.com\\n    #ServerAlias www.example.com\\n    DocumentRoot /var/www/applications/gibbon-edu-core-v23.0.02\\n\\n    <Directory /var/www/applications/gibbon-edu-core-v23.0.02>\\n\\tOptions -Indexes +FollowSymLinks +MultiViews\\n\\tAllowOverride All\\n\\tRequire all granted\\n    </Directory>\\n\\n    <FilesMatch \\\\.php$>\\n\\tSetHandler \\\"proxy:unix:/var/run/php/php8.0-fpm.sock|fcgi://localhost\\\"\\n    </FilesMatch>\\n\\n    ErrorLog ${APACHE_LOG_DIR}/gibbon-error.log\\n    CustomLog ${APACHE_LOG_DIR}/gibbon-access.log combined\\n\\n</VirtualHost>\",\n            \"error_code\": \"E1005\",\n            \"error_message\": \"Error Processing Request\",\n            \"error_stacktrace\": \"sudo vi /etc/php/8.0/fpm/php.ini\\n   \\t\\t- memory_limit = 512M\\n   \\t\\t- date.timezone = Africa/Nairobi\\n   \\t\\t- max_file_uploads = 100\\n   \\t\\t- magic_quotes_gpc = Off\\n   \\t\\t- register_globals = Off\\n   \\t\\t- short_open_tag = On\\n   \\t\\t- allow_url_fopen = On\\n   \\t\\t- max_input_vars = 10000\\n       - sudo systemctl restart php8.0-fpm\",\n            \"date_created\": \"2022-05-26 12:09:17\",\n            \"date_modified\": \"2022-05-26 12:09:17\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:8110",
+			"type": "string"
+		},
+		{
+			"key": "access_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

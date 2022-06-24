@@ -1,0 +1,1 @@
+{"doc":"","fields":[],"enumConstants":[],"methods":[{"name":"nStrings","paramTypes":["int","java.lang.String"],"doc":" @return A string containing <em>n times str</em>. Example of padding with 5 spaces: nStrings(5, \" \") + rest.\n"}]}

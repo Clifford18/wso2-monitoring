@@ -1,0 +1,1 @@
+{"doc":" Wrapper class that can hold both the resulting Email (builder) and the source OutlookMessage.\n <br>\n Useful when data is needed which didn't convert directly into the Email (builder) instance.\n","fields":[],"enumConstants":[],"methods":[]}

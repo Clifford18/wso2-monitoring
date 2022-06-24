@@ -1,0 +1,51 @@
+https://github.com/bbottema/email-rfc2822-validator/
+
+<dependency>
+    <groupId>com.github.bbottema</groupId>
+    <artifactId>emailaddress-rfc2822</artifactId>
+    <version>2.2.0</version>
+</dependency>
+
+RELEASE NOTES email-rfc2822-validator
+
+v2.2.0
+
+- #19: Parens not parsed properly and API documentation / usage needs improvement
+
+
+v2.1.4
+
+- #17: IllegalArgumentException when passing null to EmailAddressValidator.isValid(String)
+
+
+v2.1.3
+
+- #14: Update project to Java 1.7 and Jakarta Mail
+
+
+v1.1.3
+
+- #13: Fixed TLD limitation for domains longer than six
+
+
+v1.1.2
+
+- Fixed regression bug where name and address were switched around
+
+
+v1.1.1
+
+- This library can now be used with any javax.mail dependency from 1.5.5 and upwards.
+
+
+v1.1.0
+
+- #7: Clarified validation modes (default vs strictly rfc compliant)
+
+NOTE: EmailAddressValidator.isValid() now validates using EmailAddressCriteria.DEFAULT rather than EmailAddressCriteria.RFC_COMPLIANT. Use
+EmailAddressValidator.isValidStrict() for RFC compliant validation.
+
+
+v1.0.1
+
+- initial release

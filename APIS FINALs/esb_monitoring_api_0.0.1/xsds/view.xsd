@@ -1,0 +1,21 @@
+<xs:schema elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+    <xs:element name="VIEW">
+        <xs:complexType>
+            <xs:simpleContent>
+                <xs:extension base="requiredString">
+                    <xs:attribute name="MODEL" use="required" type="requiredString"/>
+                    <xs:attribute name="NAME" use="required" type="requiredString"/>
+                    <xs:attribute name="DESCRIPTION" use="optional" type="requiredString"/>
+                </xs:extension>
+            </xs:simpleContent>
+        </xs:complexType>
+    </xs:element>
+    <!-- Custom Restrictions -->
+    <xs:simpleType name="requiredString">
+        <xs:restriction base="xs:string">
+            <xs:whiteSpace value="replace"/>
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of Custom Restrictions -->
+</xs:schema>

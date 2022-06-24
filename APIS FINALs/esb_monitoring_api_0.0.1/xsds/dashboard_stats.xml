@@ -1,0 +1,46 @@
+<DASHBOARD>
+    <STATISTICS>
+        <CARDS>
+            <CARD TYPE="CREDIT_BALANCE">
+                <LABEL STYLE="font-size: 10px; font-color: #000000;">Credit Balance</LABEL>
+                <VALUE>
+                    <BALANCE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[CREDIT_BALANCE]</BALANCE>
+                    <RESERVE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[CREDIT_BALANCE_RESERVE]</RESERVE>
+                </VALUE>
+                <ICON STYLE="width: 20%;">fa-credit-icon</ICON>
+            </CARD>
+            <CARD TYPE="B2C_PAYBILL">
+                <LABEL STYLE="font-size: 10px; font-color: #000000;">B2C PayBill Balance</LABEL>
+                <VALUE>
+                    <BALANCE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[B2C_PAYBILL_BALANCE]</BALANCE>
+                    <RESERVE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[B2C_PAYBILL_RESERVE]</RESERVE>
+                </VALUE>
+                <ICON STYLE="width: 20%;">fa-b2c-icon</ICON>
+            </CARD>
+            <CARD TYPE="B2B_PAYBILL">
+                <LABEL STYLE="font-size: 10px; font-color: #000000;">B2B PayBill Balance</LABEL>
+                <VALUE>
+                    <BALANCE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[B2B_PAYBILL_BALANCE]</BALANCE>
+                    <RESERVE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[B2B_PAYBILL_RESERVE]</RESERVE>
+                </VALUE>
+                <ICON STYLE="width: 20%;">fa-b2b-icon</ICON>
+            </CARD>
+            <CARD TYPE="C2B_PAYBILL">
+                <LABEL STYLE="font-size: 10px; font-color: #000000;">C2B PayBill Balance</LABEL>
+                <VALUE>
+                    <BALANCE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[C2B_PAYBILL_BALANCE]</BALANCE>
+                    <RESERVE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[C2B_PAYBILL_RESERVE]</RESERVE>
+                </VALUE>
+                <ICON STYLE="width: 20%;">fa-b2c-icon</ICON>
+            </CARD>
+            <CARD TYPE="E-TOP_UP">
+                <LABEL STYLE="font-size: 10px; font-color: #000000;">E-Top Up Credit Balance</LABEL>
+                <VALUE>
+                    <BALANCE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[E-TOP_UP_CREDIT_BALANCE]</BALANCE>
+                    <RESERVE STYLE="font-size: 30px; font-color: #000000; font-weight: bold">[E-TOP_UP_CREDIT_RESERVE]</RESERVE>
+                </VALUE>
+                <ICON STYLE="width: 20%;">fa-b2c-icon</ICON>
+            </CARD>
+        </CARDS>
+    </STATISTICS>
+</DASHBOARD>

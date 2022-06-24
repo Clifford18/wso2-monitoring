@@ -1,0 +1,26 @@
+<APP TYPE="CREDIT_TOP_UP">
+    <ACTION>ADD</ACTION>
+    <ORGANIZATION_ID TYPE="MEMBER">4</ORGANIZATION_ID>
+    <AMOUNT TYPE="CREDIT/DEBIT">120000.00</AMOUNT>
+    <CURRENCY>KES</CURRENCY>
+    <PAYMENT_STATUS>PAID</PAYMENT_STATUS>
+    <PAYMENT_DATE>2021-03-12 23:34:48</PAYMENT_DATE>
+    <PAYMENT_MODE>CARD_PAYMENT</PAYMENT_MODE> <!-- Optional -->
+    <PAYMENT_REFERENCE>OHK4ROG1BK</PAYMENT_REFERENCE> <!-- Optional -->
+    <PAID_BY TYPE="ACCOUNT_NO"> <!-- Optional Group. But if group exists, inner tags are mandatory -->
+        <IDENTIFIER>254712345678</IDENTIFIER>
+        <NAME>Cynthia Avilia</NAME>
+    </PAID_BY>
+    <PAYMENT_DETAILS>
+        <PAYMENT_ATTACHMENTS>
+            <ATTACHMENT TYPE="FILE"  FILE_NAME="" FILE_SIZE="">/home/elon/documents/payment.pdf</ATTACHMENT> <!-- Added by API --> <!-- Optional -->
+            <ATTACHMENT TYPE="TEXT">OHK4ROG1BK confirmed.You bought Ksh100.00 of airtime on 20/8/20 at 3:07 AM.New M-PESA
+                balance is Ksh4,702.60. Transaction cost, Ksh0.00. Amount you can transact within the day is 299900.00. To
+                reverse, forward this message to 456.
+            </ATTACHMENT> <!-- Optional -->
+        </PAYMENT_ATTACHMENTS>
+        <NOTES> <!-- Optional -->
+            Multiple payments made to offset balance
+        </NOTES>
+    </PAYMENT_DETAILS>
+</APP>

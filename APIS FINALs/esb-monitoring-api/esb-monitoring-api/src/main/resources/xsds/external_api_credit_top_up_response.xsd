@@ -1,0 +1,55 @@
+<xs:schema elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+    <xs:element name="MESSAGES">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="CREDIT_TOP_UP">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="RESPONSE" type="statuses"/>
+                            <xs:element name="DESCRIPTION" type="requiredString"/>
+                            <xs:element name="SOURCE_REFERENCE" type="requiredString"/>
+                            <xs:element name="DESTINATION_REFERENCE" type="requiredString"/>
+                            <xs:element name="INTEGRITY_HASH" type="xs:string" minOccurs="0"/>
+                        </xs:sequence>
+                        <xs:attribute name="WORKFLOW_RECORD_ID" type="xs:long" />
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+            <xs:attribute name="DATE_TIME" use="required" type="dateTime"/>
+            <xs:attribute name="VERSION" use="required">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:enumeration value="1.01"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:attribute>
+        </xs:complexType>
+    </xs:element>
+    <!-- Element Enumerations -->
+    <xs:simpleType name="statuses">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="SUCCESS" />
+            <xs:enumeration value="ERROR" />
+            <xs:enumeration value="FAILED" />
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of Element Enumerations -->
+
+    <!-- Custom Restrictions -->
+    <xs:simpleType name="requiredString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="requiredDouble">
+        <xs:restriction base="xs:double">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="dateTime">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{4}-[01]\d-[0-3]\d [0-2]\d:[0-5]\d:[0-5]\d([+-][0-2]\d:[0-5]\d|)"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of Custom Restrictions -->
+</xs:schema>

@@ -1,0 +1,16 @@
+<RIGHTS>
+    <PERMISSIONS INPUT="YES/NO" APPROVE="YES/NO" VIEW="YES/NO" EDIT="YES/NO" DELETE="YES/NO" EXECUTE="YES/NO">
+        <APPROVAL_LEVELS>
+            <LEVEL>1</LEVEL>
+            <LEVEL>2</LEVEL>
+            <LEVEL>3</LEVEL>
+        </APPROVAL_LEVELS>
+    </PERMISSIONS>
+</RIGHTS>
+
+<!--
+NOTES
+________
+- If INPUT/EDIT/VIEW/DELETE/EXECUTE='YES' and APPROVE='NO' approval level is set to 0 by default
+- If APPROVE='YES' then approval level is required
+-->

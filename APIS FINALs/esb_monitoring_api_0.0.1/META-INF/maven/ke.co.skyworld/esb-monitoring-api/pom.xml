@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>ke.co.skyworld</groupId>
+  <artifactId>esb-monitoring-api</artifactId>
+  <version>0.0.1</version>
+
+  <name>esb-monitoring-api</name>
+  <!-- FIXME change it to the project's website -->
+  <url>http://www.example.com</url>
+
+  <properties>
+
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <com.captcha.version>4.0.beta3.7</com.captcha.version>
+    <commons.beanutils.version>1.9.3</commons.beanutils.version>
+    <commons.codec.version>1.11</commons.codec.version>
+    <commons.collections.version>4.1</commons.collections.version>
+    <connection.manager.version>2.2</connection.manager.version>
+    <fastcsv.version>1.0.3</fastcsv.version>
+    <fastexcel.version>0.10.11</fastexcel.version>
+    <freemaker.version>2.3.28</freemaker.version>
+    <jackson.version>2.9.6</jackson.version>
+    <jansi.version>1.17.1</jansi.version>
+    <javax.mail.version>1.6.0</javax.mail.version>
+    <jaxb.api.version>2.3.1</jaxb.api.version>
+    <jbcrypt.version>0.4</jbcrypt.version>
+    <jboss.logging.version>2.1.0.Final</jboss.logging.version>
+    <jboss.logmanager.version>2.0.0.Final</jboss.logmanager.version>
+    <jboss.xnio.version>3.3.8.Final</jboss.xnio.version>
+    <JCDP.version>2.0.3.1</JCDP.version>
+    <junit.version>4.5</junit.version>
+    <log4j.version>1.2.17</log4j.version>
+    <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+    <maven-jar-plugin.version>3.0.2</maven-jar-plugin.version>
+    <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+    <maven-surefire-plugin>2.22.2</maven-surefire-plugin>
+    <mysql-connector-java-version>8.0.11</mysql-connector-java-version>
+    <openhtml.version>1.0.3</openhtml.version>
+    <org.assertj.version>2.6.0</org.assertj.version>
+    <poi-version>4.1.1</poi-version>
+    <simplecaptcha.version>1.2.1</simplecaptcha.version>
+    <simple-java-mail-version>6.4.3</simple-java-mail-version>
+    <slf4j-api.version>1.7.25</slf4j-api.version>
+    <slf4j-simple.version>1.7.25</slf4j-simple.version>
+    <undertow.version>2.0.9.Final</undertow.version>
+  </properties>
+
+  <dependencies>
+
+    <dependency>
+      <groupId>io.undertow</groupId>
+      <artifactId>undertow-core</artifactId>
+      <version>${undertow.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.mindrot</groupId>
+      <artifactId>jbcrypt</artifactId>
+      <version>${jbcrypt.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.logging</groupId>
+      <artifactId>jboss-logging-processor</artifactId>
+      <version>${jboss.logging.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.xnio</groupId>
+      <artifactId>xnio-nio</artifactId>
+      <version>${jboss.xnio.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.jboss.logmanager</groupId>
+      <artifactId>jboss-logmanager</artifactId>
+      <version>${jboss.logmanager.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>${junit.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <version>${org.assertj.version}</version>
+      <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>${mysql-connector-java-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>${log4j.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-log4j12</artifactId>
+      <version>${slf4j-simple.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>${slf4j-api.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.diogonunes</groupId>
+      <artifactId>JCDP</artifactId>
+      <version>${JCDP.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-annotations</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.dataformat</groupId>
+      <artifactId>jackson-dataformat-xml</artifactId>
+      <version>${jackson.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-collections4</artifactId>
+      <version>${commons.collections.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>${commons.codec.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+      <version>${commons.beanutils.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.fusesource.jansi</groupId>
+      <artifactId>jansi</artifactId>
+      <version>${jansi.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi</artifactId>
+      <version>${poi-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml</artifactId>
+      <version>${poi-version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.poi</groupId>
+      <artifactId>poi-ooxml-schemas</artifactId>
+      <version>${poi-version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>de.siegmar</groupId>
+      <artifactId>fastcsv</artifactId>
+      <version>${fastcsv.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.dhatim</groupId>
+      <artifactId>fastexcel</artifactId>
+      <version>${fastexcel.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.dhatim</groupId>
+      <artifactId>fastexcel-reader</artifactId>
+      <version>${fastexcel.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.freemarker</groupId>
+      <artifactId>freemarker</artifactId>
+      <version>${freemaker.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.sun.mail</groupId>
+      <artifactId>javax.mail</artifactId>
+      <version>${javax.mail.version}</version>
+    </dependency>
+
+    <!--mvn install:install-file \
+    -Dfile=lib/simplecaptcha-1.2.1.jar \
+    -DgroupId=nl.captcha \
+    -DartifactId=simplecaptcha \
+    -Dversion=1.2.1 \
+    -Dpackaging=jar \
+    -DgeneratePom=true-->
+
+    <dependency>
+      <groupId>nl.captcha</groupId>
+      <artifactId>simplecaptcha</artifactId>
+      <version>${simplecaptcha.version}</version>
+    </dependency>
+
+    <!--mvn install:install-file \
+    -Dfile=lib/ConnectionManager-2.2.jar \
+    -DgroupId=ke.co.skyworld.connection_manager \
+    -DartifactId=ConnectionManager \
+    -Dversion=2.2 \
+    -Dpackaging=jar \
+    -DgeneratePom=true-->
+
+    <dependency>
+      <groupId>ke.co.skyworld.connection_manager</groupId>
+      <artifactId>ConnectionManager</artifactId>
+      <version>${connection.manager.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.openhtmltopdf</groupId>
+      <artifactId>openhtmltopdf-core</artifactId>
+      <version>${openhtml.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.openhtmltopdf</groupId>
+      <artifactId>openhtmltopdf-pdfbox</artifactId>
+      <version>${openhtml.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.openhtmltopdf</groupId>
+      <artifactId>openhtmltopdf-java2d</artifactId>
+      <version>${openhtml.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.openhtmltopdf</groupId>
+      <artifactId>openhtmltopdf-svg-support</artifactId>
+      <version>${openhtml.version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.simplejavamail</groupId>
+      <artifactId>simple-java-mail</artifactId>
+      <version>${simple-java-mail-version}</version>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+    <finalName>esb_monitoring_api_${project.version}</finalName>
+    <resources>
+      <resource>
+        <directory>src/main/java</directory>
+        <excludes>
+          <exclude>**/*.java</exclude>
+        </excludes>
+      </resource>
+      <resource>
+        <directory>src/main/resources</directory>
+      </resource>
+    </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>${maven-compiler-plugin.version}</version>
+        <configuration>
+          <source>8</source>
+          <target>8</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>${maven-shade-plugin.version}</version>
+        <executions>
+          <execution>
+            <phase>package</phase>
+            <goals>
+              <goal>shade</goal>
+            </goals>
+            <inherited>false</inherited>
+          </execution>
+        </executions>
+        <configuration>
+          <filters>
+            <filter>
+              <artifact>*:*</artifact>
+              <excludes>
+                <exclude>META-INF/*.SF</exclude>
+                <exclude>META-INF/*.DSA</exclude>
+                <exclude>META-INF/*.RSA</exclude>
+              </excludes>
+            </filter>
+          </filters>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <version>${maven-jar-plugin.version}</version>
+        <configuration>
+          <archive>
+            <manifest>
+              <mainClass>ke.co.skyworld.Main</mainClass>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <configuration>
+          <executable>java</executable>
+          <arguments>
+            <argument>-jar</argument>
+            <argument>target/${project.build.finalName}.jar</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin}</version>
+        <configuration>
+          <systemPropertyVariables>
+            <propertyName>java.library.path</propertyName>
+            <buildDirectory>/usr/local/lib</buildDirectory>
+          </systemPropertyVariables>
+        </configuration>
+      </plugin>
+
+    </plugins>
+
+    <testSourceDirectory>src/test/java</testSourceDirectory>
+
+  </build>
+</project>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<API REQUEST_DUMP="true">
+    <CONTEXT>
+        <PORT>8110</PORT>
+        <HOST>0.0.0.0</HOST>
+        <PATH>/</PATH>
+        <TIME_ZONE>Africa/Nairobi</TIME_ZONE>
+        <ENABLE_BASIC_AUTH>true</ENABLE_BASIC_AUTH>
+        <UNDERTOW IO_THREAD_POOL="24" WORKER_THREAD_POOL="120"/>
+        <PORTAL>
+            <HOST NAME="portal.esb_monitoring.co.ke" PREFIX="https://"/>
+            <PATHS LOGIN="/user/signin" WORKFLOW="/user/workflow"/>
+            <STATISTICS>
+                <DASHBOARD>
+                    <INFO_WIDGET PERIOD="3" TIME_UNIT="YEAR"/> <!-- TIME_UNIT = SECOND/MINUTE/HOUR/DAY/WEEK/MONTH/YEAR-->
+                </DASHBOARD>
+            </STATISTICS>
+            <LOGS>
+                <MSG HISTORY="600" TIME_UNIT="DAYS"/>
+                <PESA HISTORY="600" TIME_UNIT="DAYS"/>
+            </LOGS>
+        </PORTAL>
+    </CONTEXT>
+    <AUTHENTICATION MULTIPLE_SAME_USER_SESSIONS="false">
+        <ACCESS_TOKEN>
+            <LENGTH>80</LENGTH> <!-- Max Length = 150 -->
+            <TIMEOUT TIME_UNIT="SECONDS">3600</TIMEOUT> <!-- TIME_UNIT -> SECONDS, MINUTES, HOURS, DAYS -->
+        </ACCESS_TOKEN>
+        <PASSWORD_GENERATOR LENGTH="10" USE_DIGITS="true" USE_LOWERCASE="false" USE_PUNCTUATIONS="false" USE_UPPERCASE="true"/> <!-- todo: put in Constants -->
+        <CAPTCHA AUDIO_CAPTCHA="false" BACKGROUND="true" BORDER="true" CAPTCHA_ALPHANUMERIC="false" CAPTCHA_LENGTH="6" CAPTCHA_TTL="60" HEIGHT="50" NOISE_LEVEL="1" WIDTH="200"/> <!-- CAPTCHA_TTL in SECONDS -->
+    </AUTHENTICATION>
+    <PAGINATION>
+        <PAGE_SIZE>10</PAGE_SIZE>
+        <PAGE_SIZE/>
+    </PAGINATION>
+    <DB>
+        <INITIALIZE>false</INITIALIZE>
+        <SERVER>MySQL</SERVER> <!-- MySQL / MicrosoftSQL / Oracle / PostgreSQL -->
+        <HOST>192.168.2.11</HOST>
+        <PORT>3306</PORT>
+        <NAMES MASTER="esb_monitoring_db"/>
+        <USERNAME>remote_root</USERNAME>
+        <PASSWORD TYPE="ENCRYPTED">7JiLOyA4pzZOXNYR9HFIPw==</PASSWORD> <!--ENCRYPTED / CLEARTEXT -->
+        <CONNECTION_HEALTH_CHECK ENABLED="true" INTERVAL="180"/> <!-- Intervals in seconds -->
+        <DRIVER_CLASS>com.mysql.cj.jdbc.Driver</DRIVER_CLASS>
+        <CONN_METADATA>autoReconnect=true&amp;allowMultiQueries=true&amp;useSSL=false&amp;createDatabaseIfNotExist=false&amp;allowPublicKeyRetrieval=true</CONN_METADATA>
+        <SHOW_SQL>false</SHOW_SQL>
+        <SLING_RING>
+            <INITIAL_POOL_SIZE VALUE="5"/> <!-- Initial number of JDBC connections in the pool -->
+            <MAXIMUM_POOL_SIZE VALUE="20"/> <!-- Max number of JDBC connections in the pool -->
+            <EXTRA_CONNS_SIZE VALUE="5"/> <!-- Number of JDBC connections to spawn as extra -->
+            <FIND_FREE_CONN_AFTER TIME_UNIT="MILLISECONDS" VALUE="1500"/>
+            <DOWNSIZE_AFTER TIME_UNIT="SECONDS" VALUE="600"/>
+            <PING_AFTER TIME_UNIT="SECONDS" VALUE="3600"/>
+            <MAX_PINGER_THREADS VALUE="50"/>
+            <MAX_TASKS_PER_PINGER_THREAD VALUE="3"/>
+        </SLING_RING>
+    </DB>
+    <PROCESSORS>
+        <FILE_PROCESSOR PROCESSING_PREF="STREAM"/> <!-- PROCESSING_PREF=MEMORY/STREAM -->
+        <REPORT_GENERATOR BUFFER_SIZE="1000" COMPRESSION_FORMAT="zip/rar/7z" ENABLE_COMPRESSION="false" WINDOW_SIZE="50"> <!-- Records to fetch and keep in memory at a time --> <!-- todo: Put Window size in code -->
+            <XML_BASED PAGE_SIZE="3000"/>
+        </REPORT_GENERATOR>
+        <FILE_DUMBER BATCH_SIZE="100000"/> <!-- todo: Put in code -->
+    </PROCESSORS>
+    <PATHS>
+        <SYSTEM_FOLDERS ROOT="/media/elon/Code/Java/projects/esb-monitoring-api/tmp/" REPORTS="reports/" WORKFLOW="workflow/"/>
+    </PATHS>
+    <LOGGING OUTPUT_SREAMS="stdout, file" THRESHOLD="DEBUG">
+        <STDOUT TARGET="System.out" TYPE="org.apache.log4j.ConsoleAppender">
+            <LAYOUT FORMAT="%5p [thread-%t] - %d{yyyy-MM-dd HH:mm:ss.SSS}; - %c{1}%m%n">org.apache.log4j.PatternLayout
+            </LAYOUT>
+        </STDOUT>
+        <FILE MAX_BACKUP_INDEX="10" MAX_FILE_SIZE="10000KB" PATH="sw.log" TYPE="org.apache.log4j.RollingFileAppender">
+            <LAYOUT FORMAT="%5p %t - %d{yyyy-MM-dd HH:mm:ss.SSS}; - %c [thread-%t] - (%F:%L) - %m%n">
+                org.apache.log4j.PatternLayout
+            </LAYOUT>
+        </FILE>
+    </LOGGING>
+</API>

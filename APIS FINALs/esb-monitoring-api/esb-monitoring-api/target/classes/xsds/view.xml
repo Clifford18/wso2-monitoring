@@ -1,0 +1,3 @@
+<VIEW MODEL="workflows" NAME="In Progress Workflows" DESCRIPTION="Workflows with In Progress">
+    <![CDATA[fields=*&orderBy=date_modified DESC&filter={workflow_status:eq:IN_PROGRESS}]]>
+</VIEW>

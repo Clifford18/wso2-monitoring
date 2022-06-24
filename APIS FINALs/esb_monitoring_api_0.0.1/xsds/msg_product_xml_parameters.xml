@@ -1,0 +1,9 @@
+<PRODUCT>
+    <PORTAL>
+        <CHARGE>
+            <PROPOSE STATUS="ACTIVE/INACTIVE">
+                <MIN_CHARGE_RATE>1.5</MIN_CHARGE_RATE>
+            </PROPOSE>
+        </CHARGE>
+    </PORTAL>
+</PRODUCT>

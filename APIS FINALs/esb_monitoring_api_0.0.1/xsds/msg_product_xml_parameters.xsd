@@ -1,0 +1,47 @@
+<xs:schema elementFormDefault='qualified' xmlns:xs='http://www.w3.org/2001/XMLSchema'>
+    <xs:element name="PRODUCT">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="PORTAL">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="CHARGE">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="PROPOSE">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="MIN_CHARGE_RATE" type="requiredDouble"/>
+                                                </xs:sequence>
+                                                <xs:attribute name="STATUS" use="required">
+                                                    <xs:simpleType>
+                                                        <xs:restriction base="xs:string">
+                                                            <xs:enumeration value="ACTIVE"/>
+                                                            <xs:enumeration value="INACTIVE"/>
+                                                        </xs:restriction>
+                                                    </xs:simpleType>
+                                                </xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Custom Restrictions -->
+    <xs:simpleType name="requiredDouble">
+        <xs:restriction base="xs:double">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="requiredString">
+        <xs:restriction base="xs:string">
+            <xs:minLength value="1"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <!-- End of Custom Restrictions -->
+</xs:schema>
