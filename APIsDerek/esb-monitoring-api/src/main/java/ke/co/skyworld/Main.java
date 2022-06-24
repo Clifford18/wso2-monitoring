@@ -25,7 +25,8 @@ import static ke.co.skyworld.utils.Constants.*;
 import static ke.co.skyworld.utils.Constants.Table.*;
 import static org.fusesource.jansi.Ansi.ansi;
 
-public class Main {
+public class
+Main {
     public static void main(String[] args) {
 
         try {
